@@ -28,16 +28,14 @@ import reactor.core.publisher.Mono;
 public class AuthAndLogFilter implements GlobalFilter, Ordered {
 	@Autowired
 	private RedisUtil redisUtil;
-	@Autowired
-	RestTemplate restTemplate;
+/*	@Autowired
+	private RestTemplate restTemplate;*/
 	@Override
 	public int getOrder() {
 		// TODO Auto-generated method stub
 		return -20;
 	}
 
-	@Value("${spring.redis.host}")
-	String host;
 
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
