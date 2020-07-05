@@ -1,0 +1,28 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: yuekeju-user
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+  devtools:
+    restart: 
+      enabled: true
+      additional-paths: src/main/java
+      exclude: src/main/resources
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#ribbon:  
+#  ReadTimeout: 3000
+#  ConnectTimeout: 3000

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.yuekeju</groupId>
+    <artifactId>master</artifactId>
+    <version>1.0.SNAPSHOT</version>
+  </parent>
+  <artifactId>yuekeju-user</artifactId>
+  <packaging>pom</packaging>
+  <version>${yuekeju.version}</version>
+  <modules>
+    <module>yuekeju-user-service-api</module>
+    <module>yuekeju-user-provider</module>
+  </modules>
+  <dependencies>
+  		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.yuekeju</groupId>
+			<artifactId>yuekeju-common</artifactId>
+			<version>${yuekeju.version}</version>
+		</dependency>
+		    <!-- 引入Druid依赖，阿里巴巴所提供的数据源 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.28</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.10</version>
+        </dependency>
+  </dependencies>
+</project>
