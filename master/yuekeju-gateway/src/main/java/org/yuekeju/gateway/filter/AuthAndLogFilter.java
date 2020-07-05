@@ -1,6 +1,5 @@
 package org.yuekeju.gateway.filter;
 
-import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,11 +12,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
 import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ServerWebExchange;
 import org.yuekeju.common.util.RedisUtil;
 
@@ -30,7 +28,8 @@ import reactor.core.publisher.Mono;
 public class AuthAndLogFilter implements GlobalFilter, Ordered {
 	@Autowired
 	private RedisUtil redisUtil;
-
+	@Autowired
+	RestTemplate restTemplate;
 	@Override
 	public int getOrder() {
 		// TODO Auto-generated method stub
