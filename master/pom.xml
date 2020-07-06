@@ -84,6 +84,26 @@
 			<artifactId>shiro-spring</artifactId>
 			<version>${shiro.version}</version>
 		</dependency>
+		<!-- zipkin start  -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+		<!-- 解决集成zipkin启动报错问题 -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.10</version>
+		</dependency>
+		<!-- zipkin end  -->
 	</dependencies>
 
 
@@ -131,5 +151,6 @@
 		<module>yuekeju-gateway</module>
 		<module>yuekeju-user</module>
 		<module>yuekeju-auth</module>
+		<module>yuekeju-sys-user</module>
 	</modules>
 </project>
