@@ -17,9 +17,12 @@ import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ServerWebExchange;
+import org.yuekeju.common.entity.user.UserEntity;
 import org.yuekeju.common.util.RedisUtil;
+import org.yuekeju.gateway.feiginservice.UserFeignService;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.plugins.Page;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -28,8 +31,10 @@ import reactor.core.publisher.Mono;
 public class AuthAndLogFilter implements GlobalFilter, Ordered {
 	@Autowired
 	private RedisUtil redisUtil;
-/*	@Autowired
+	/*@Autowired
 	private RestTemplate restTemplate;*/
+	@Autowired
+	private  UserFeignService userFeignService;
 	@Override
 	public int getOrder() {
 		// TODO Auto-generated method stub
@@ -43,6 +48,7 @@ public class AuthAndLogFilter implements GlobalFilter, Ordered {
 		ServerHttpRequest serverHttpRequest = exchange.getRequest();
 		ServerHttpResponse serverHttpResponse = exchange.getResponse();
 		String method = serverHttpRequest.getMethodValue();
+		Page<UserEntity> findUser = userFeignService.findUser();
 		if ("POST".equals(method)) {
 			//获取webfix 传过来的参数值  并解析
 			return DataBufferUtils.join(exchange.getRequest().getBody()).flatMap(dataBuffer -> {

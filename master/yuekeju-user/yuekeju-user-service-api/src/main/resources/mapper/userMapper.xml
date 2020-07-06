@@ -3,7 +3,7 @@
 <mapper namespace="org.yuekeju.user.dao.UserDAO">
  <sql id="user_column_list"></sql>
   <select id="findUserByLoginName" resultType ="org.yuekeju.common.entity.user.UserEntity" >
-  	SELECT  * FROM t_developers 
+  	SELECT  * FROM users 
   </select>
 
 </mapper>
