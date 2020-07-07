@@ -27,7 +27,7 @@ spring:
   zipkin:
     enabled: true
     base-url: http://47.101.219.100:9411/
-    #discovery-client-enabled: false
+    discovery-client-enabled: false
   sleuth:
     sampler:
       probability: 1.0
