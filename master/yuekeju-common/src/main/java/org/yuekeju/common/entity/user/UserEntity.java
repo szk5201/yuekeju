@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
 
 import lombok.Data;
 @Data
+@TableName("yuekeju_user")
 public class UserEntity extends YuekejuPersionLiableVO implements Serializable{
 	private int id;
 	//唯一标识
