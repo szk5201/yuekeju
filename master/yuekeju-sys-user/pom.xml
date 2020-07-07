@@ -10,7 +10,11 @@
 	<artifactId>yuekeju-sys-user</artifactId>
 	<packaging>pom</packaging>
 	<dependencies>
-	
+		<dependency>
+			<groupId>com.yuekeju</groupId>
+			<artifactId>yuekeju-common</artifactId>
+			<version>${yuekeju.version}</version>
+		</dependency>
 	</dependencies>
 	<modules>
 		<module>yuekeju-sys-user-provider</module>
