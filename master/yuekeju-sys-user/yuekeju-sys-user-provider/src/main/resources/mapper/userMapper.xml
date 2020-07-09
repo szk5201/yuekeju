@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.yuekeju.user.dao.UserDAO">
- <sql id="user_column_list">
- 	id,yuekeju_code,login_name,name,user_password,user_adress,sex,user_number,last_login_time,create_time,update_time,creater,modified,user_lock_status,user_lock_count,user_lock_time
+ <sql id="user_all_column_list">
+ 	id,yuekeju_code,login_name,name,user_password,user_adress,sex,user_number,
+ 	last_login_time,create_time,update_time,creater,modified,user_lock_status,
+ 	user_lock_count,user_lock_time
  </sql>
- 
+ <sql id="user_info_column_list">
+ 	id,yuekeju_code,login_name,name,user_adress,sex,user_number,
+ 	last_login_time,create_time,update_time,creater,modified,user_lock_status,
+ 	user_lock_count,user_lock_time
+ </sql>
  
  
  

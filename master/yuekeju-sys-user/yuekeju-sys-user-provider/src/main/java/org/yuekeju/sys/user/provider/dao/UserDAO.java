@@ -10,5 +10,11 @@ import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 
 @Mapper
 public interface UserDAO extends BaseMapper<UserEntity>{
+	/**
+	 * 根据条件查询 全查 并分页
+	 * @param page
+	 * @param userEntity
+	 * @return
+	 */
 	List<UserEntity> findUserByLoginName(Pagination page,UserEntity userEntity);
 }

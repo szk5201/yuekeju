@@ -11,6 +11,10 @@ import lombok.Data;
 @Data
 @TableName("yuekeju_user")
 public class UserEntity extends YuekejuPersionLiableVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	//唯一标识
 	private String yuekejuCode;

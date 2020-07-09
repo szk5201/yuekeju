@@ -84,7 +84,7 @@
 			<artifactId>shiro-spring</artifactId>
 			<version>${shiro.version}</version>
 		</dependency>
-		<!-- zipkin start  -->
+		<!-- zipkin start -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
@@ -103,7 +103,7 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.10</version>
 		</dependency>
-		<!-- zipkin end  -->
+		<!-- zipkin end -->
 	</dependencies>
 
 
@@ -152,5 +152,6 @@
 		<module>yuekeju-user</module>
 		<module>yuekeju-auth</module>
 		<module>yuekeju-sys-user</module>
+		<module>yuekeju-system</module>
 	</modules>
 </project>
