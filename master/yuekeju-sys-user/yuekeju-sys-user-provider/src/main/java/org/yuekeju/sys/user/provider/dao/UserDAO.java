@@ -10,5 +10,5 @@ import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 
 @Mapper
 public interface UserDAO extends BaseMapper<UserEntity>{
-	List<UserEntity> findUserByLoginName(Pagination page,String status);
+	List<UserEntity> findUserByLoginName(Pagination page,UserEntity userEntity);
 }
