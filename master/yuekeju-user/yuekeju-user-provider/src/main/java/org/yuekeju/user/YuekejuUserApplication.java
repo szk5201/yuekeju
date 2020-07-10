@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * 用户服务
- * szk  2020-7-3
+ * @author szk  2020-7-3
  */
 @SpringBootApplication
 @EnableDiscoveryClient

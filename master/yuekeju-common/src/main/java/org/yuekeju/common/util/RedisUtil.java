@@ -10,6 +10,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+
+/**
+ * 2020-7-10
+ * @author szk
+ * redis 工具类
+ */
 @Configuration
 @Component
 public class RedisUtil {

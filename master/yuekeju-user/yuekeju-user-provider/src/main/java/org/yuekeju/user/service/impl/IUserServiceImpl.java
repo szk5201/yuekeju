@@ -1,5 +1,9 @@
 package org.yuekeju.user.service.impl;
 
+import java.util.HashSet;
+
+import java.util.Set;
+
 import org.springframework.stereotype.Service;
 import org.yuekeju.common.entity.user.UserEntity;
 import org.yuekeju.user.dao.UserDAO;
@@ -7,6 +11,10 @@ import org.yuekeju.user.service.IUserService;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+/**
+ * 数据访问层服务
+ * @author szk  2020-7-3
+ */
 @Service
 public class IUserServiceImpl  extends ServiceImpl<UserDAO, UserEntity> implements IUserService {
 
@@ -16,7 +24,5 @@ public class IUserServiceImpl  extends ServiceImpl<UserDAO, UserEntity> implemen
 		page.setRecords(baseMapper.findUserByLoginName(page, status));
 		return page;
 	}
-	
-	
 	
 }

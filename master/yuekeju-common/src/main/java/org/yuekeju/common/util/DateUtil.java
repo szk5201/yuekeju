@@ -14,8 +14,15 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+/**
+ * 2020-7-10
+ * @author szk
+ * 时间转化
+ */
 public class DateUtil {
-	   // 时间元素
+	  /**
+	   * 时间元素
+	   */
     private static final String YEAR = "year";
     private static final String MONTH = "month";
     private static final String WEEK = "week";
@@ -24,42 +31,67 @@ public class DateUtil {
     private static final String MINUTE = "minute";
     private static final String SECOND = "second";
 
-    // 星期元素
-    private static final String MONDAY = "MONDAY";// 星期一
-    private static final String TUESDAY = "TUESDAY";// 星期二
-    private static final String WEDNESDAY = "WEDNESDAY";// 星期三
-    private static final String THURSDAY = "THURSDAY";// 星期四
-    private static final String FRIDAY = "FRIDAY";// 星期五
-    private static final String SATURDAY = "SATURDAY";// 星期六
-    private static final String SUNDAY = "SUNDAY";// 星期日
+    /**
+     *  星期元素
+     */
+    /**
+     * 星期一
+     */
+    private static final String MONDAY = "MONDAY";
+    /**
+     *  星期二
+     */
+    private static final String TUESDAY = "TUESDAY";
+    /**
+     * 星期三
+     */
+    private static final String WEDNESDAY = "WEDNESDAY";
+    /**
+     *  星期四
+     */
+    private static final String THURSDAY = "THURSDAY";
+    /**
+     * 星期五
+     */
+    private static final String FRIDAY = "FRIDAY"; 
+    /**
+     * 星期六
+     */
+    private static final String SATURDAY = "SATURDAY";
+    /**
+     * 星期日
+     */
+    private static final String SUNDAY = "SUNDAY"; 
 
     // 根据指定格式显示日期和时间
     /** yyyy-MM-dd */
-    private static final DateTimeFormatter yyyyMMdd_EN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	private static final DateTimeFormatter YYYYMMDD_EN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     /** yyyy-MM-dd HH */
-    private static final DateTimeFormatter yyyyMMddHH_EN = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+    private static final DateTimeFormatter YYYYMMDDHH_EN = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
     /** yyyy-MM-dd HH:mm */
-    private static final DateTimeFormatter yyyyMMddHHmm_EN = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter YYYYMMDDHHMM_EN = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     /** yyyy-MM-dd HH:mm:ss */
-    private static final DateTimeFormatter yyyyMMddHHmmss_EN = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter YYYYMMDDHHMMSS_EN = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     /** HH:mm:ss */
-    private static final DateTimeFormatter HHmmss_EN = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private static final DateTimeFormatter HHMMSS_EN = DateTimeFormatter.ofPattern("HH:mm:ss");
     /** yyyy年MM月dd日 */
-    private static final DateTimeFormatter yyyyMMdd_CN = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
+    private static final DateTimeFormatter YYYYMMDD_CN = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
     /** yyyy年MM月dd日HH时 */
-    private static final DateTimeFormatter yyyyMMddHH_CN = DateTimeFormatter.ofPattern("yyyy年MM月dd日HH时");
+    private static final DateTimeFormatter YYYYMMDDHH_CN = DateTimeFormatter.ofPattern("yyyy年MM月dd日HH时");
     /** yyyy年MM月dd日HH时mm分 */
-    private static final DateTimeFormatter yyyyMMddHHmm_CN = DateTimeFormatter.ofPattern("yyyy年MM月dd日HH时mm分");
+    private static final DateTimeFormatter YYYYMMDDHHMM_CN = DateTimeFormatter.ofPattern("yyyy年MM月dd日HH时mm分");
     /** yyyy年MM月dd日HH时mm分ss秒 */
-    private static final DateTimeFormatter yyyyMMddHHmmss_CN = DateTimeFormatter.ofPattern("yyyy年MM月dd日HH时mm分ss秒");
+    private static final DateTimeFormatter YYYYMMDDHHMMSS_CN = DateTimeFormatter.ofPattern("yyyy年MM月dd日HH时mm分ss秒");
     /** HH时mm分ss秒 */
-    private static final DateTimeFormatter HHmmss_CN = DateTimeFormatter.ofPattern("HH时mm分ss秒");
+    private static final DateTimeFormatter HHMMSS_CN = DateTimeFormatter.ofPattern("HH时mm分ss秒");
 
-    // 本地时间显示格式：区分中文和外文显示
-    private static final DateTimeFormatter shotDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
-    private static final DateTimeFormatter fullDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
-    private static final DateTimeFormatter longDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
-    private static final DateTimeFormatter mediumDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
+    /**
+     * 本地时间显示格式：区分中文和外文显示
+     */
+    private static final DateTimeFormatter SHOTDATE = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+    private static final DateTimeFormatter FULLDATE = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+    private static final DateTimeFormatter LONGDATE = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
+    private static final DateTimeFormatter MEDIUMDATE = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
 
     /**
      * 获取当前日期
@@ -67,7 +99,7 @@ public class DateUtil {
      * @return yyyy-MM-dd
      * @author zero 2019/03/30
      */
-    public static String getNowDate_EN() {
+    public static String getNowDateEn() {
         return String.valueOf(LocalDate.now());
     }
 
@@ -77,33 +109,33 @@ public class DateUtil {
      * @return 字符串yyyy-MM-dd HH:mm:ss
      * @author zero 2019/03/30
      */
-    public static String getNowTime_EN() {
-        return LocalDateTime.now().format(yyyyMMddHHmmss_EN);
+    public static String getNowTimeEn() {
+        return LocalDateTime.now().format(YYYYMMDDHHMMSS_EN);
     }
 
     /** 获取当前时间（yyyy-MM-dd HH） */
-    public static String getNowTime_EN_yMdH() {
-        return LocalDateTime.now().format(yyyyMMddHH_EN);
+    public static String getNowTimeEnYmdh() {
+        return LocalDateTime.now().format(YYYYMMDDHH_EN);
     }
 
     /** 获取当前时间（yyyy年MM月dd日） */
-    public static String getNowTime_CN_yMdH() {
-        return LocalDateTime.now().format(yyyyMMddHH_CN);
+    public static String getNowTimeCnYmdh() {
+        return LocalDateTime.now().format(YYYYMMDDHH_CN);
     }
 
     /** 获取当前时间（yyyy-MM-dd HH:mm） */
-    public static String getNowTime_EN_yMdHm() {
-        return LocalDateTime.now().format(yyyyMMddHHmm_EN);
+    public static String getNowTimeEnYmdhM() {
+        return LocalDateTime.now().format(YYYYMMDDHHMM_EN);
     }
 
     /** 获取当前时间（yyyy年MM月dd日HH时mm分） */
-    public static String getNowTime_CN_yMdHm() {
-        return LocalDateTime.now().format(yyyyMMddHHmm_CN);
+    public static String getNowTimeCnYmdHm() {
+        return LocalDateTime.now().format(YYYYMMDDHHMM_CN);
     }
 
     /** 获取当前时间（HH时mm分ss秒） */
-    public static String getNowTime_CN_HHmmss() {
-        return LocalDateTime.now().format(HHmmss_CN);
+    public static String getNowTimeCnHhmmss() {
+        return LocalDateTime.now().format(HHMMSS_CN);
     }
 
     /**
@@ -127,8 +159,8 @@ public class DateUtil {
      * @return yyyy年mm月dd日
      * @author zero 2019/03/30
      */
-    public static String getNowDate_CN() {
-        return LocalDate.now().format(yyyyMMdd_CN);
+    public static String getNowDateCn() {
+        return LocalDate.now().format(YYYYMMDD_CN);
     }
 
     /**
@@ -137,8 +169,8 @@ public class DateUtil {
      * @return yyyy年MM月dd日HH时mm分ss秒
      * @author zero 2019/03/30
      */
-    public static String getNowTime_CN() {
-        return LocalDateTime.now().format(yyyyMMddHHmmss_CN);
+    public static String getNowTimeCn() {
+        return LocalDateTime.now().format(YYYYMMDDHHMMSS_CN);
     }
 
     /**
@@ -148,8 +180,8 @@ public class DateUtil {
      * @return 字符串yy-M-dd
      * @author zero 2019/03/30
      */
-    public static String getNowLocalTime_shot() {
-        return LocalDateTime.now().format(shotDate);
+    public static String getNowLocalTimeshot() {
+        return LocalDateTime.now().format(SHOTDATE);
     }
 
     /**
@@ -158,8 +190,8 @@ public class DateUtil {
      * @return 形如：2019年3月30日 星期六
      * @author zero 2019/03/30
      */
-    public static String getNowLocalTime_full() {
-        return LocalDateTime.now().format(fullDate);
+    public static String getNowLocalTimeFull() {
+        return LocalDateTime.now().format(FULLDATE);
     }
 
     /**
@@ -168,8 +200,8 @@ public class DateUtil {
      * @return 形如 2019年3月30日
      * @author zero 2019/03/30
      */
-    public static String getNowLocalTime_long() {
-        return LocalDateTime.now().format(longDate);
+    public static String getNowLocalTimeLong() {
+        return LocalDateTime.now().format(LONGDATE);
     }
 
     /**
@@ -178,8 +210,8 @@ public class DateUtil {
      * @return 形如：2019-3-30
      * @author zero 2019/03/30
      */
-    public static String getNowLocalTime_medium() {
-        return LocalDateTime.now().format(mediumDate);
+    public static String getNowLocalTimeMedium() {
+        return LocalDateTime.now().format(MEDIUMDATE);
     }
 
     /**
@@ -200,7 +232,7 @@ public class DateUtil {
                 resultNode = today.getMonthValue();
                 break;
             case WEEK:
-                resultNode = transformWeekEN2Num(String.valueOf(today.getDayOfWeek()));
+                resultNode = transformWeekEn2Num(String.valueOf(today.getDayOfWeek()));
                 break;
             case DAY:
                 resultNode = today.getDayOfMonth();
@@ -229,7 +261,7 @@ public class DateUtil {
      * @return int，如果数字小于0，则检查，看是否输入错误 or 入参为null
      * @author zero 2019/03/30
      */
-    public static int transformWeekEN2Num(String enWeek) {
+    public static int transformWeekEn2Num(String enWeek) {
         if (MONDAY.equals(enWeek)) {
             return 1;
         } else if (TUESDAY.equals(enWeek)) {
@@ -266,19 +298,19 @@ public class DateUtil {
     public static String getAfterOrPreNowTime(String node, Long num) {
         LocalDateTime now = LocalDateTime.now();
         if (HOUR.equals(node)) {
-            return now.plusHours(num).format(yyyyMMddHHmmss_EN);
+            return now.plusHours(num).format(YYYYMMDDHHMMSS_EN);
         } else if (DAY.equals(node)) {
-            return now.plusDays(num).format(yyyyMMddHHmmss_EN);
+            return now.plusDays(num).format(YYYYMMDDHHMMSS_EN);
         } else if (WEEK.equals(node)) {
-            return now.plusWeeks(num).format(yyyyMMddHHmmss_EN);
+            return now.plusWeeks(num).format(YYYYMMDDHHMMSS_EN);
         } else if (MONTH.equals(node)) {
-            return now.plusMonths(num).format(yyyyMMddHHmmss_EN);
+            return now.plusMonths(num).format(YYYYMMDDHHMMSS_EN);
         } else if (YEAR.equals(node)) {
-            return now.plusYears(num).format(yyyyMMddHHmmss_EN);
+            return now.plusYears(num).format(YYYYMMDDHHMMSS_EN);
         } else if (MINUTE.equals(node)) {
-            return now.plusMinutes(num).format(yyyyMMddHHmmss_EN);
+            return now.plusMinutes(num).format(YYYYMMDDHHMMSS_EN);
         } else if (SECOND.equals(node)) {
-            return now.plusSeconds(num).format(yyyyMMddHHmmss_EN);
+            return now.plusSeconds(num).format(YYYYMMDDHHMMSS_EN);
         } else {
             return "Node is Error!";
         }
@@ -293,7 +325,7 @@ public class DateUtil {
      * <li>node="year",num=1L:2020-03-30 10:20:30</li>
      * </ul>
      * 
-     * @param dtf 格式化当前时间格式（dtf = yyyyMMddHHmmss_EN）
+     * @param dtf 格式化当前时间格式（dtf = YYYYMMDDHHMMSS_EN）
      * @param node 节点元素（“year”,"month","week","day","huor","minute","second"）
      * @param num （+：之后，-：之前）
      * @return 之后之前的日期
@@ -331,11 +363,11 @@ public class DateUtil {
     public static String getAfterOrPreNowTimeSimp(String node, Long num) {
         LocalTime now = LocalTime.now();
         if (HOUR.equals(node)) {
-            return now.plusHours(num).format(HHmmss_EN);
+            return now.plusHours(num).format(HHMMSS_EN);
         } else if (MINUTE.equals(node)) {
-            return now.plusMinutes(num).format(HHmmss_EN);
+            return now.plusMinutes(num).format(HHMMSS_EN);
         } else if (SECOND.equals(node)) {
-            return now.plusSeconds(num).format(HHmmss_EN);
+            return now.plusSeconds(num).format(HHMMSS_EN);
         } else {
             return "Node is Error!";
         }
@@ -350,7 +382,8 @@ public class DateUtil {
      */
     public static boolean isBirthday(int month, int dayOfMonth) {
         MonthDay birthDay = MonthDay.of(month, dayOfMonth);
-        MonthDay curMonthDay = MonthDay.from(LocalDate.now());// MonthDay只存储了月、日。
+     // MonthDay只存储了月、日。
+        MonthDay curMonthDay = MonthDay.from(LocalDate.now());
         if (birthDay.equals(curMonthDay)) {
             return true;
         }
@@ -365,7 +398,7 @@ public class DateUtil {
      * @author zero 2019/03/31
      */
     public static String getAfterOrPreDayDate(int index) {
-        return LocalDate.now().plus(index, ChronoUnit.DAYS).format(yyyyMMdd_EN);
+        return LocalDate.now().plus(index, ChronoUnit.DAYS).format(YYYYMMDD_EN);
     }
 
     /**
@@ -376,7 +409,7 @@ public class DateUtil {
      * @author zero 2019/03/31
      */
     public static String getAfterOrPreWeekDate(int index) {
-        return LocalDate.now().plus(index, ChronoUnit.WEEKS).format(yyyyMMdd_EN);
+        return LocalDate.now().plus(index, ChronoUnit.WEEKS).format(YYYYMMDD_EN);
     }
 
     /**
@@ -387,7 +420,7 @@ public class DateUtil {
      * @author zero 2019/03/31
      */
     public static String getAfterOrPreMonthDate(int index) {
-        return LocalDate.now().plus(index, ChronoUnit.MONTHS).format(yyyyMMdd_EN);
+        return LocalDate.now().plus(index, ChronoUnit.MONTHS).format(YYYYMMDD_EN);
     }
 
     /**
@@ -398,7 +431,7 @@ public class DateUtil {
      * @author zero 2019/03/31
      */
     public static String getAfterOrPreYearDate(int index) {
-        return LocalDate.now().plus(index, ChronoUnit.YEARS).format(yyyyMMdd_EN);
+        return LocalDate.now().plus(index, ChronoUnit.YEARS).format(YYYYMMDD_EN);
     }
 
     /**
@@ -413,13 +446,13 @@ public class DateUtil {
     public static String getAfterOrPreDate(String date, String node, int index) {
         date = date.trim();
         if (DAY.equals(node)) {
-            return LocalDate.parse(date).plus(index, ChronoUnit.DAYS).format(yyyyMMdd_EN);
+            return LocalDate.parse(date).plus(index, ChronoUnit.DAYS).format(YYYYMMDD_EN);
         } else if (WEEK.equals(node)) {
-            return LocalDate.parse(date).plus(index, ChronoUnit.WEEKS).format(yyyyMMdd_EN);
+            return LocalDate.parse(date).plus(index, ChronoUnit.WEEKS).format(YYYYMMDD_EN);
         } else if (MONTH.equals(node)) {
-            return LocalDate.parse(date).plus(index, ChronoUnit.MONTHS).format(yyyyMMdd_EN);
+            return LocalDate.parse(date).plus(index, ChronoUnit.MONTHS).format(YYYYMMDD_EN);
         } else if (YEAR.equals(node)) {
-            return LocalDate.parse(date).plus(index, ChronoUnit.YEARS).format(yyyyMMdd_EN);
+            return LocalDate.parse(date).plus(index, ChronoUnit.YEARS).format(YYYYMMDD_EN);
         } else {
             return "Wrong date format!";
         }
@@ -481,8 +514,8 @@ public class DateUtil {
      */
     public static List<String> getPieDateRange(String startDate, String endDate, String period) {
         List<String> result = Lists.newArrayList();
-        LocalDate end = LocalDate.parse(endDate, yyyyMMdd_EN);
-        LocalDate start = LocalDate.parse(startDate, yyyyMMdd_EN);
+        LocalDate end = LocalDate.parse(endDate, YYYYMMDD_EN);
+        LocalDate start = LocalDate.parse(startDate, YYYYMMDD_EN);
         LocalDate tmp = start;
         switch (period) {
             case DAY:
@@ -539,9 +572,9 @@ public class DateUtil {
      */
     public static String getLastDayOfMonth(String curDate, boolean firstOrLast) {
         if (firstOrLast) {
-            return LocalDate.parse(curDate, yyyyMMdd_EN).with(TemporalAdjusters.firstDayOfMonth()).toString();
+            return LocalDate.parse(curDate, YYYYMMDD_EN).with(TemporalAdjusters.firstDayOfMonth()).toString();
         } else {
-            return LocalDate.parse(curDate, yyyyMMdd_EN).with(TemporalAdjusters.lastDayOfMonth()).toString();
+            return LocalDate.parse(curDate, YYYYMMDD_EN).with(TemporalAdjusters.lastDayOfMonth()).toString();
         }
     }
 
@@ -555,9 +588,9 @@ public class DateUtil {
      */
     public static String getLastDayOfYear(String curDate, boolean firstOrLast) {
         if (firstOrLast) {
-            return LocalDate.parse(curDate, yyyyMMdd_EN).with(TemporalAdjusters.firstDayOfYear()).toString();
+            return LocalDate.parse(curDate, YYYYMMDD_EN).with(TemporalAdjusters.firstDayOfYear()).toString();
         } else {
-            return LocalDate.parse(curDate, yyyyMMdd_EN).with(TemporalAdjusters.lastDayOfYear()).toString();
+            return LocalDate.parse(curDate, YYYYMMDD_EN).with(TemporalAdjusters.lastDayOfYear()).toString();
         }
     }
 

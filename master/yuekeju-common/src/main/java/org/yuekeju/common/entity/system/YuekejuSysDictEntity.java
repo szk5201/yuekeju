@@ -13,9 +13,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * <p>
  * 字典表
- * </p>
  *
  * @author suzk123
  * @since 2020-07-09

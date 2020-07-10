@@ -9,6 +9,10 @@ import org.yuekeju.user.service.IUserService;
 
 import com.baomidou.mybatisplus.plugins.Page;
 
+/**
+ * 用户数据交互层
+ * @author szk  2020-7-3
+ */
 @RestController
 public class UserController {
 	@Autowired
@@ -21,7 +25,7 @@ public class UserController {
 
 	@RequestMapping("/list")
 	public Page<UserEntity> list() {
-		Page page = new Page(1, 10);
+		Page<UserEntity> page = new Page<UserEntity>(1, 10);
 		page = iUserService.findDevelopers(page, "NORMAL");
 		return page;
 	}

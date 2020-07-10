@@ -10,30 +10,19 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 47.101.219.100:8848
+        server-addr: 127.0.0.1:8848
         file-extension: yaml
       discovery:
-        server-addr: 47.101.219.100:8848
+        server-addr: 127.0.0.1:8848
     sentinel:
       transport:
         dashboard: 47.101.219.100:8080
-  devtools:
-    restart: 
-      enabled: true
-      additional-paths: src/main/java
-      exclude: src/main/resources
-  zipkin:
-    enabled: true
-    base-url: http://47.101.219.100:9411/
-   # discoveryClientEnabled: false
-  sleuth:
-    sampler:
-      probability: 1.0
 management:
   endpoints:
     web:
       exposure:
         include: '*'
+
 #ribbon:  
 #  ReadTimeout: 3000
 #  ConnectTimeout: 3000

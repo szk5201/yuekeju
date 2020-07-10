@@ -9,16 +9,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * 
+ * 2020-7-10
+ * @author szk
  * 管理员用户服务
- *
  */
 @SpringBootApplication
 @ComponentScan("org.yuekeju")
 @EnableFeignClients
 @EnableDiscoveryClient
-@EnableCaching // 开启缓存
-@EnableTransactionManagement // 开启事务，保证redis与mysql中数据的一致性
+@EnableCaching  /** @author szk 开启缓存*/
+@EnableTransactionManagement /**@author szk 开启事务，保证redis与mysql中数据的一致性*/
 public class SysUserApplication 
 {
     public static void main( String[] args )
