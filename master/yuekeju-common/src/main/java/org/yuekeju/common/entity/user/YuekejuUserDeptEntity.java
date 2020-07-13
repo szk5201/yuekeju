@@ -7,6 +7,8 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+import org.yuekeju.common.vo.YuekejuPersionLiableVO;
+
 /**
  * <p>
  * 组织机构用户中间表
@@ -17,7 +19,7 @@ import java.io.Serializable;
  */
 @TableName("yuekeju_user_dept")
 @Data
-public class YuekejuUserDeptEntity implements Serializable {
+public class YuekejuUserDeptEntity   extends YuekejuPersionLiableVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

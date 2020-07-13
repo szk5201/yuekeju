@@ -1,6 +1,9 @@
 package org.yuekeju.common.entity.user;
 
 import java.util.Date;
+
+import org.yuekeju.common.vo.YuekejuPersionLiableVO;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 
@@ -18,7 +21,7 @@ import java.io.Serializable;
  */
 @TableName("yuekeju_user_loginpassword")
 @Data
-public class YuekejuUserLoginpasswordEntity implements Serializable {
+public class YuekejuUserLoginpasswordEntity  extends YuekejuPersionLiableVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

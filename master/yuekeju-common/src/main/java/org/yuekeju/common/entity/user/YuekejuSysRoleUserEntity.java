@@ -7,6 +7,8 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+import org.yuekeju.common.vo.YuekejuPersionLiableVO;
+
 /**
  * <p>
  * 管理用户角色关系表
@@ -17,7 +19,7 @@ import java.io.Serializable;
  */
 @TableName("yuekeju_sys_role_user")
 @Data
-public class YuekejuSysRoleUserEntity implements Serializable {
+public class YuekejuSysRoleUserEntity  extends YuekejuPersionLiableVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

@@ -2,6 +2,8 @@ package org.yuekeju.common.entity.user;
 
 import java.io.Serializable;
 
+import org.yuekeju.common.vo.YuekejuPersionLiableVO;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 
@@ -17,7 +19,7 @@ import lombok.Data;
  */
 @TableName("yuekeju_role_permission")
 @Data
-public class YuekejuRolePermissionEntity   implements Serializable {
+public class YuekejuRolePermissionEntity  extends YuekejuPersionLiableVO  implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
