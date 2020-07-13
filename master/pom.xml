@@ -122,9 +122,6 @@
 			<artifactId>jedis</artifactId>
 			<version>2.9.0</version>
 		</dependency>
-
-
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-activemq</artifactId>
@@ -159,6 +156,21 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>6.0.6</version>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+		</dependency> 
+		 <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-all</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+		<!-- ShardingSphere -->
+	<!-- 	<dependency>
+			<groupId>io.shardingsphere</groupId>
+			<artifactId>sharding-jdbc-core</artifactId>
+			<version>3.0.0</version>
+		</dependency> -->
 	</dependencies>
 
 
