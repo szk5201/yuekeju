@@ -1,8 +1,8 @@
 server:
-  port: 8084
+  port: 8085
 spring:
   application:
-    name: yuekeju-user
+    name: yuekeju-system
   #data:
   #  elasticsearch:
   #    cluster-nodes: 192.168.0.108:9300
@@ -17,12 +17,6 @@ spring:
     sentinel:
       transport:
         dashboard: 47.101.219.100:8080
-oos:
-   endpoint: oss-cn-hangzhou.aliyuncs.com
-   keyid: LTAI9aJru3bCIPPY # 填写刚刚生成的AccessKey
-   keysecret: BcY3We9JpVLb0yUU7cRZnmkUdfUnhs  # 填写刚刚生成的Accesssecret
-   bucketname: yuekeju # bucket名称
-   filehost: file    #bucket下文件夹的路径
 management:
   endpoints:
     web:

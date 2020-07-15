@@ -12,4 +12,6 @@ public class CommonConstants {
 	public static final String HTTP_DEL = "DELETE";
 	public static final Integer MD5_LENGTH = 16;
 	public static final Integer AES_EXCEPT = 2;
+	public static final boolean FALSE = false;
+	public static final boolean TRUE = true;
 }
