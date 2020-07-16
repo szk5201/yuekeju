@@ -1,5 +1,6 @@
 package org.yuekeju.system.provider.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.yuekeju.common.entity.system.YuekejuAppBannerEntity;
@@ -36,7 +37,7 @@ public interface YuekejuAppBannerService extends IService<YuekejuAppBannerEntity
 	 * @param id
 	 * @return
 	 */
-	ResultVO deleteBanner(Integer[] id);
+	ResultVO deleteBanner(List<Integer>  ids);
 	/**
 	 * 查询banner图
 	 */

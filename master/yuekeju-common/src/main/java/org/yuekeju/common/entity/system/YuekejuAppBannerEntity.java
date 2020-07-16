@@ -1,16 +1,18 @@
 package org.yuekeju.common.entity.system;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 import org.yuekeju.common.vo.YuekejuPersionLiableVO;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.IdType;
 
 import lombok.Data;
-
-import java.io.Serializable;
 
 /**
  * <p>
@@ -29,6 +31,7 @@ public class YuekejuAppBannerEntity  extends YuekejuPersionLiableVO implements S
     /**
      * id
      */
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
     /**
      * 唯一标识
@@ -59,7 +62,8 @@ public class YuekejuAppBannerEntity  extends YuekejuPersionLiableVO implements S
     /**
      * 删除标记
      */
-    @TableField("del_tab_status")
+    @TableLogic  //逻辑删除注解
+    @TableField(value="del_tab_status",fill = FieldFill.INSERT)  //新增的时候自动插入，MetaObjectHandlerConfig配置文件
     private BigDecimal delTabStatus;
 
 }

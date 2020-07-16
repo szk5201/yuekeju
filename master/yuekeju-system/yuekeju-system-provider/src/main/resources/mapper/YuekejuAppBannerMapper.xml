@@ -17,5 +17,23 @@
         <result column="create_time" property="createTime" />
         <result column="del_tab_status" property="delTabStatus" />
     </resultMap>
+    <sql id="baseSql">
+    	id,yuekeju_code,title,url,image_url,status,remark,modified,update_time,creater,create_time,del_tab_status
+    </sql>
+	<select id="findBannerBySeach"  resultType="org.yuekeju.common.entity.system.YuekejuAppBannerEntity" parameterType="java.util.Map">
+		SELECT 
+		<include refid="baseSql" />
+		FROM yuekeju_app_banner 
+		<if test="id!=null and  id!=0">
+			id=#{id}
+		</if>
+		<if test="status!=null and  status!=0">
+			status=#{status}
+		</if>
+		<if test="delTabStatus!=null and delTabStatus!=0">
+			del_tab_status=#{delTabStatus}
+		</if>
+	</select>
+	
 
 </mapper>
