@@ -1,5 +1,8 @@
 package org.yuekeju.common.aop;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -7,7 +10,11 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.yuekeju.common.auth.AuthSecurityAnnotation;
 
 @Aspect
 @Component
@@ -31,8 +38,18 @@ public class AuthSecurityAspect {
   
     @Before(value = "authSecurity()")
     public void doBeforeAdvice(JoinPoint joinPoint){
-        System.out.println("进入方法前执行.....");
-
+    	  ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+          HttpServletRequest request = attributes.getRequest();
+          HttpServletResponse response = attributes.getResponse();
+          String requestURI = request.getRequestURI();
+          MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+          AuthSecurityAnnotation annotation = signature.getMethod().getAnnotation(AuthSecurityAnnotation.class);
+          boolean auth = annotation.isAuth();
+          String perms = annotation.perms();
+          System.out.println("进入方法前执行.....");
+          System.out.println("进入方法前执行.....是否验证"+auth);
+          System.out.println("进入方法前执行.....权限"+perms);
+          System.out.println("进入方法前执行.....地址"+requestURI);
     }
 
     /**

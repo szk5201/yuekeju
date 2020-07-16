@@ -102,10 +102,10 @@ public class AuthAndLogFilter implements GlobalFilter, Ordered {
 			return returnDate(false, -2, null, "请您重新登录！", serverHttpResponse);
 		}
 
-		String redisToken = redisUtil.get("username") == null ? null : redisUtil.get("username").toString();
+		/*String redisToken = redisUtil.get("username") == null ? null : redisUtil.get("username").toString();
 		if (redisToken == null || !(token).equals(redisToken)) {
 			return returnDate(false, -1, null, "请您重新登录！", serverHttpResponse);
-		}
+		}*/
 		return null;
 	}
 	public static Mono<Void> returnDate(Boolean isSuccess,Integer code , String date ,String message, ServerHttpResponse serverHttpResponse){
