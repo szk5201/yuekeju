@@ -15,5 +15,26 @@
         <result column="creater" property="creater" />
         <result column="modified" property="modified" />
     </resultMap>
+    <sql id="roleColumn">
+    	yuekeju_code,role_en_name,role_cn_name,role_description,role_status,create_time,update_time,creater,modified
+    </sql>
+    
+	<select id="findAllBySearch" parameterType="java.util.Map" resultType="org.yuekeju.common.entity.user.YuekejuRoleEntity">
+		SELECT 
+		<include refid="roleColumn" />
+		FROM yuekeju_role
+		<where>
+			<if test="yuekejuCode!=null and yuekejuCode!=''">
+				yuekeju_code=#{yuekejuCode}
+			</if>
+			<if test="roleStatus!=null and roleStatus!=0">
+				role_status=#{roleStatus}
+			</if>
+		</where>
+		order by create_time
+		
+	</select>
+
+
 
 </mapper>

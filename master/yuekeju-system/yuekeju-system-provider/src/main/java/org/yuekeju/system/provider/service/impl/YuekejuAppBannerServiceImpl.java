@@ -118,8 +118,13 @@ public class YuekejuAppBannerServiceImpl extends ServiceImpl<YuekejuAppBannerDAO
 				paramMap.put("size", CommonConstants.DEFAULT_SIZE);
 			}
 			Page<YuekejuAppBannerEntity> page = new Page<YuekejuAppBannerEntity>(Integer.parseInt(paramMap.get("curryPage").toString()), Integer.parseInt(paramMap.get("size").toString()));
-			Page<YuekejuAppBannerEntity> setRecords = page.setRecords(baseMapper.findBannerBySeach(paramMap));
-			return  new ResultVO(ResultEnum.SELECTSUCCESS.getCode(),CommonConstants.TRUE,CommonConstants.BANNER_NAME+ResultEnum.SELECTSUCCESS.getMessage(), null);
+			List<YuekejuAppBannerEntity> findBannerBySeach = baseMapper.findBannerBySeach(paramMap);
+			if(findBannerBySeach!=null && !findBannerBySeach.isEmpty()){
+				Page<YuekejuAppBannerEntity> setRecords = page.setRecords(findBannerBySeach);
+				return  new ResultVO(ResultEnum.SELECTSUCCESS.getCode(),CommonConstants.TRUE,CommonConstants.BANNER_NAME+ResultEnum.SELECTSUCCESS.getMessage(), setRecords);
+			}
+			return  new ResultVO(ResultEnum.FINDNULLERROR.getCode(),CommonConstants.FALSE,CommonConstants.BANNER_NAME+ResultEnum.FINDNULLERROR.getMessage(), null);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

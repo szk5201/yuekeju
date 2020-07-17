@@ -21,6 +21,7 @@ public class CommonConstants {
 	//功能名称
 	public static final String BANNER_NAME = "轮播图";
 	public static final String DISC_NAME = "词典";
+	public static final String ROLE_NAME="角色";
 	//默认分页的当前页和显示行数
 	public static final Integer DEFAULT_CURRY_PAGE=1;
 	public static final Integer DEFAULT_SIZE=10;

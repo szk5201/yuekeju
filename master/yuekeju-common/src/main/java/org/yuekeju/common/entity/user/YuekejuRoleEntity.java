@@ -6,7 +6,9 @@ import java.math.BigDecimal;
 import org.yuekeju.common.vo.YuekejuPersionLiableVO;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 
 import lombok.Data;
 
@@ -27,6 +29,7 @@ public class YuekejuRoleEntity  extends YuekejuPersionLiableVO implements Serial
     /**
      * id
      */
+    @TableId(type=IdType.AUTO)
     private Integer id;
     /**
      * 唯一标识

@@ -16,7 +16,8 @@ public enum ResultEnum {
 	SELECTSUCCESS(200,"查询成功"),
 	SELECTERROR(1003,"查询失败"),
 	SELECTBYIDERROR(1004,"传入数据有误，无法进行修改！"),
-	UPDATETIMEERROR(1005,"改数据已被修改，请刷新后重试！");
+	UPDATETIMEERROR(1005,"改数据已被修改，请刷新后重试！"),
+	FINDNULLERROR(1006,"暂无该数据！");
 	
 	
 	
