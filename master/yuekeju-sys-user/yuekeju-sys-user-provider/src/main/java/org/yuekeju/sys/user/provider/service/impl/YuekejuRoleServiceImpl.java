@@ -74,5 +74,25 @@ public class YuekejuRoleServiceImpl extends ServiceImpl<YuekejuRoleDAO, YuekejuR
 		}
 		return  new ResultVO(ResultEnum.SYSTEMERROR.getCode(),CommonConstants.FALSE,ResultEnum.SYSTEMERROR.getMessage(), null);
 	}
+	/**
+	 * 新增
+	 */
+	@Override
+	public ResultVO insertRole(YuekejuRoleEntity yuekejuRoleEntity) {
+		try {
+			yuekejuRoleEntity.setCreater("1");
+			yuekejuRoleEntity.setModified("1");
+			yuekejuRoleEntity.setYuekejuCode(System.currentTimeMillis()+"");
+			Integer insert = baseMapper.insert(yuekejuRoleEntity);
+			if(insert>0){
+				return  new ResultVO(ResultEnum.INSERTSUCCESS.getCode(),CommonConstants.TRUE,CommonConstants.ROLE_NAME+ResultEnum.INSERTSUCCESS.getMessage(), null);
+			}
+			return  new ResultVO(ResultEnum.INSERTERROR.getCode(),CommonConstants.TRUE,CommonConstants.ROLE_NAME+ResultEnum.INSERTERROR.getMessage(), null);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return  new ResultVO(ResultEnum.SYSTEMERROR.getCode(),CommonConstants.FALSE,ResultEnum.SYSTEMERROR.getMessage(), null);
+	}
 
 }

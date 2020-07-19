@@ -27,5 +27,11 @@ public interface YuekejuRoleService extends IService<YuekejuRoleEntity> {
 	 * 根据id 查询角色
 	 */
 	ResultVO findRoleByCode(Map<String,Object> paramMap);
+	/**
+	 * 新增角色
+	 * @param yuekejuRoleEntity
+	 * @return
+	 */
+	ResultVO insertRole(YuekejuRoleEntity yuekejuRoleEntity);
 	
 }

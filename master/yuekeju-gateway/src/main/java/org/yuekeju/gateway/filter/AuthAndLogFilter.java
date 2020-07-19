@@ -53,7 +53,7 @@ public class AuthAndLogFilter implements GlobalFilter, Ordered {
 		String method = serverHttpRequest.getMethodValue();
 		HttpHeaders headers = serverHttpRequest.getHeaders();
 		
-		Page<UserEntity> findUser = userFeignService.findUser();
+		//Page<UserEntity> findUser = userFeignService.findUser();
 		if (CommonConstants.HTTP_POST.equals(method) || CommonConstants.HTTP_PUT.equals(method) || CommonConstants.HTTP_DEL.equals(method)) {
 			Mono<Void> tokenVerfication = postTokenVerfication(serverHttpResponse,redisUtil,headers);
 			if(tokenVerfication!=null ){
