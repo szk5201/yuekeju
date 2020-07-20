@@ -1,6 +1,5 @@
 package org.yuekeju.sys.user.provider.service;
 
-import java.util.List;
 import java.util.Map;
 
 import org.yuekeju.common.entity.user.YuekejuRoleEntity;
@@ -16,6 +15,7 @@ import com.baomidou.mybatisplus.service.IService;
  * @author suzk
  * @since 2020-07-09
  */
+@SuppressWarnings("all")
 public interface YuekejuRoleService extends IService<YuekejuRoleEntity> {
 	  /**
      * 查询角色  全部查询 或者条件查询
@@ -25,6 +25,8 @@ public interface YuekejuRoleService extends IService<YuekejuRoleEntity> {
 	ResultVO  findAllBySearch(Map<String,Object> map);
 	/**
 	 * 根据id 查询角色
+	 * @param paramMap
+	 * @return
 	 */
 	ResultVO findRoleByCode(Map<String,Object> paramMap);
 	/**
@@ -33,5 +35,12 @@ public interface YuekejuRoleService extends IService<YuekejuRoleEntity> {
 	 * @return
 	 */
 	ResultVO insertRole(YuekejuRoleEntity yuekejuRoleEntity);
+	/**
+	 * 根据中文名称和英文名称查询
+	 * @param yuekejuRoleEntity 
+	 * @return
+	 */
+	ResultVO findRoleNameByCnAndEn(YuekejuRoleEntity yuekejuRoleEntity);
+	
 	
 }

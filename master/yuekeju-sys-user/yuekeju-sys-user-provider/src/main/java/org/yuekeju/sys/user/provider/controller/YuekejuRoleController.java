@@ -25,6 +25,7 @@ import org.yuekeju.sys.user.provider.service.YuekejuRoleService;
  */
 @RestController
 @RequestMapping("/yuekejuRole")
+@SuppressWarnings("all")
 public class YuekejuRoleController {
 	@Autowired
 	private YuekejuRoleService yuekejuRoleService;
@@ -58,5 +59,16 @@ public class YuekejuRoleController {
 	public ResultVO  findRoleByCode(Map<String,Object> param){
 		return	yuekejuRoleService.findRoleByCode(param);
 	}
+	/**
+	 * 验证 中文名称和英文名称
+	 */
+	@GetMapping("/findRoleNameByCnAndEn")
+	@AuthSecurityAnnotation(isAuth=true,perms="role:findRoleNameByCnAndEn")
+	public ResultVO findRoleNameByCnAndEn(YuekejuRoleEntity yuekejuRoleEntity){
+		return yuekejuRoleService.findRoleNameByCnAndEn(yuekejuRoleEntity);
+		
+	}
+
+	
 }
 

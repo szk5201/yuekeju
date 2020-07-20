@@ -25,6 +25,11 @@ public interface YuekejuRoleDAO extends BaseMapper<YuekejuRoleEntity> {
      */
 	List<YuekejuRoleEntity>  findAllBySearch(Map<String,Object> map);
 	
+	/**
+	 * 根据对象条件查询
+	 */
+	
+	Integer findCountBySearch(YuekejuRoleEntity yuekejuRoleEntity);
 	
 	
 }
