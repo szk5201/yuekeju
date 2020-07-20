@@ -1,7 +1,9 @@
-package org.yuekeju.common.entity.user;
+package org.yuekeju.common.vo.user;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -17,8 +19,7 @@ import java.io.Serializable;
  * @author suzk123
  * @since 2020-07-20
  */
-@TableName("yuekeju_permission")
-public class YuekejuPermissionEntity implements Serializable {
+public class YuekejuPermissionVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -30,62 +31,50 @@ public class YuekejuPermissionEntity implements Serializable {
     /**
      * 唯一标识
      */
-    @TableField("yuekeju_code")
     private String yuekejuCode;
     /**
      * 权限名称
      */
-    @TableField("permission_name")
     private String permissionName;
     /**
      * 权限描述
      */
-    @TableField("permission_description")
     private String permissionDescription;
     /**
      * 权限路径
      */
-    @TableField("permission_url")
     private String permissionUrl;
     /**
      * 权限标识
      */
-    @TableField("permission_perms")
     private String permissionPerms;
     /**
      * 父级权限id
      */
-    @TableField("permission_parent_id")
     private String permissionParentId;
     /**
      * 权限类型  0：目录   1：菜单   2：按钮
      */
-    @TableField("permission_type")
     private BigDecimal permissionType;
     /**
      * 权限排序
      */
-    @TableField("pemission_order_num")
     private BigDecimal pemissionOrderNum;
     /**
      * 权限图标
      */
-    @TableField("permission_icon")
     private String permissionIcon;
     /**
      * 权限状态
      */
-    @TableField("del_tab_status")
     private BigDecimal delTabStatus;
     /**
      * 创建时间
      */
-    @TableField("create_time")
     private Date createTime;
     /**
      * 修改时间
      */
-    @TableField("update_time")
     private Date updateTime;
     /**
      * 创建人
@@ -97,8 +86,19 @@ public class YuekejuPermissionEntity implements Serializable {
     private String modified;
 
     
+    private List<?> list;
+    
+    
 
-    public Integer getId() {
+    public List<?> getList() {
+		return list;
+	}
+
+	public void setList(List<?> list) {
+		this.list = list;
+	}
+
+	public Integer getId() {
         return id;
     }
 

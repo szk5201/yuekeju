@@ -1,7 +1,9 @@
 package org.yuekeju.sys.user.provider.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
-import org.yuekeju.common.entity.user.YuekejuPermission;
+import org.yuekeju.common.entity.user.YuekejuPermissionEntity;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
@@ -14,6 +16,11 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2020-07-20
  */
 @Mapper
-public interface YuekejuPermissionDAO extends BaseMapper<YuekejuPermission> {
-
+public interface YuekejuPermissionDAO extends BaseMapper<YuekejuPermissionEntity> {
+	/**
+	 * 查询资源表
+	 * @param prantId  父级id
+	 * @return
+	 */
+	List<YuekejuPermissionEntity> findAllPermission(String prantId);
 }

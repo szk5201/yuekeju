@@ -3,7 +3,7 @@
 <mapper namespace="org.yuekeju.sys.user.provider.dao.YuekejuPermissionDAO">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="org.yuekeju.sys.user.provider.entity.YuekejuPermission">
+    <resultMap id="BaseResultMap" type="org.yuekeju.common.entity.user.YuekejuPermissionEntity">
         <id column="id" property="id" />
         <result column="yuekeju_code" property="yuekejuCode" />
         <result column="permission_name" property="permissionName" />
@@ -20,5 +20,18 @@
         <result column="creater" property="creater" />
         <result column="modified" property="modified" />
     </resultMap>
+    <sql id="findAll">
+    	yuekeju_code,permission_name,permission_url,permission_perms,permission_parent_id,permission_type,pemission_order_num,permission_icon,del_tab_status
+    </sql>
+	<!-- 根据父id查询 -->
+	<select id="findAllPermission" resultType="org.yuekeju.common.entity.user.YuekejuPermissionEntity" parameterType="java.lang.String">
+		SELECT
+		<include refid="findAll" /> 
+	    FROM  yuekeju_permission
+	    where permission_parent_id=#{prantId}
+	    order by pemission_order_num
+	    
+	</select>
+
 
 </mapper>

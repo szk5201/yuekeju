@@ -1,6 +1,7 @@
 package org.yuekeju.sys.user.provider.service;
 
-import org.yuekeju.common.entity.user.YuekejuPermission;
+import org.yuekeju.common.entity.user.YuekejuPermissionEntity;
+import org.yuekeju.common.vo.ResultVO;
 
 import com.baomidou.mybatisplus.service.IService;
 
@@ -12,6 +13,12 @@ import com.baomidou.mybatisplus.service.IService;
  * @author suzk123
  * @since 2020-07-20
  */
-public interface YuekejuPermissionService extends IService<YuekejuPermission> {
-
+@SuppressWarnings("all")
+public interface YuekejuPermissionService extends IService<YuekejuPermissionEntity> {
+	/**
+	 * 根据父id查询
+	 * @param prantId
+	 * @return
+	 */
+	ResultVO findAllPermission(String prantId);
 }
