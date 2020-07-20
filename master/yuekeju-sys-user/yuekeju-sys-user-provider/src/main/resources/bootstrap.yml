@@ -20,6 +20,9 @@ spring:
     sentinel:
       transport:
         dashboard: 47.101.219.100:8080
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
   devtools:
     restart: 
       enabled: true
