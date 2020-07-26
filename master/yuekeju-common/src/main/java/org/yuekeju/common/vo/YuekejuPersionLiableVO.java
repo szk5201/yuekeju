@@ -9,6 +9,7 @@ import lombok.Data;
  * @author szk
  * 2020-7-5
  */
+@SuppressWarnings("all")
 @Data
 public class YuekejuPersionLiableVO implements  Serializable{
 	/**

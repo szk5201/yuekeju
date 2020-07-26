@@ -1,5 +1,8 @@
 package org.yuekeju.common.util;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+@Component
 public class SnowflakeId {
 
 	// ==============================Fields===========================================
@@ -34,9 +37,11 @@ public class SnowflakeId {
 	private final long sequenceMask = -1L ^ (-1L << sequenceBits);
 
 	/** 工作机器ID(0~31) */
+	@Value("snowflakeId.workerId")
 	private long workerId;
 
 	/** 数据中心ID(0~31) */
+	@Value("snowflakeId.datacenterId")
 	private long datacenterId;
 
 	/** 毫秒内序列(0~4095) */
@@ -44,7 +49,7 @@ public class SnowflakeId {
 
 	/** 上次生成ID的时间截 */
 	private long lastTimestamp = -1L;
-
+	
 	// ==============================Constructors=====================================
 	/**
 	 * 构造函数
@@ -54,7 +59,7 @@ public class SnowflakeId {
 	 * @param datacenterId
 	 *            数据中心ID (0~31)
 	 */
-	public SnowflakeId(long workerId, long datacenterId) {
+	public SnowflakeId() {
 		if (workerId > maxWorkerId || workerId < 0) {
 			throw new IllegalArgumentException(
 					String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
@@ -63,8 +68,6 @@ public class SnowflakeId {
 			throw new IllegalArgumentException(
 					String.format("datacenter Id can't be greater than %d or less than 0", maxDatacenterId));
 		}
-		this.workerId = workerId;
-		this.datacenterId = datacenterId;
 	}
 
 	// ==============================Methods==========================================
@@ -106,6 +109,43 @@ public class SnowflakeId {
 				| sequence;
 	}
 
+	// ==============================Methods==========================================
+	/**
+	 * 获得下一个ID (该方法是线程安全的)
+	 * 
+	 * @return SnowflakeId
+	 */
+	public synchronized String nextIdString() {
+		long timestamp = timeGen();
+
+		// 如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
+		if (timestamp < lastTimestamp) {
+			throw new RuntimeException(String.format(
+					"Clock moved backwards.  Refusing to generate id for %d milliseconds", lastTimestamp - timestamp));
+		}
+
+		// 如果是同一时间生成的，则进行毫秒内序列
+		if (lastTimestamp == timestamp) {
+			sequence = (sequence + 1) & sequenceMask;
+			// 毫秒内序列溢出
+			if (sequence == 0) {
+				// 阻塞到下一个毫秒,获得新的时间戳
+				timestamp = tilNextMillis(lastTimestamp);
+			}
+		}
+		// 时间戳改变，毫秒内序列重置
+		else {
+			sequence = 0L;
+		}
+
+		// 上次生成ID的时间截
+		lastTimestamp = timestamp;
+		long  snowflakeId =((timestamp - twepoch) << timestampLeftShift) | 
+				(datacenterId << datacenterIdShift) | 
+				(workerId << workerIdShift) | sequence;
+		// 移位并通过或运算拼到一起组成64位的ID
+		return snowflakeId+""; 
+	}
 	/**
 	 * 阻塞到下一个毫秒，直到获得新的时间戳
 	 * 
@@ -133,7 +173,7 @@ public class SnowflakeId {
 	// ==============================Test=============================================
 	/** 测试 */
 	public static void main(String[] args) {
-		SnowflakeId idWorker = new SnowflakeId(11,11);
+		SnowflakeId idWorker = new SnowflakeId();
 		for (int i = 0; i < 100; i++) {
 			long id = idWorker.nextId();
 			System.out.println(Long.toBinaryString(id));

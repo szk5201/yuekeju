@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
@@ -21,6 +22,7 @@ import java.io.Serializable;
  */
 @TableName("yuekeju_user_loginpassword")
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class YuekejuUserLoginpasswordEntity  extends YuekejuPersionLiableVO implements Serializable {
 
     private static final long serialVersionUID = 1L;

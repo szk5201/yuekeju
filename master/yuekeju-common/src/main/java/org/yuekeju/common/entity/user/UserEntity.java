@@ -8,13 +8,15 @@ import org.yuekeju.common.vo.YuekejuPersionLiableVO;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 2020-7-10
  * 
  * @author szk 用户表
  */
-@Data
+@Data()
+@EqualsAndHashCode(callSuper = true)
 @TableName("yuekeju_user")
 public class UserEntity extends YuekejuPersionLiableVO implements Serializable {
 	/**

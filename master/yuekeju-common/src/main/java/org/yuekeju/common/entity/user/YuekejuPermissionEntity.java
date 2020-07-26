@@ -1,13 +1,17 @@
 package org.yuekeju.common.entity.user;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+
+import org.yuekeju.common.vo.YuekejuPersionLiableVO;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 
-import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * <p>
@@ -18,7 +22,9 @@ import java.io.Serializable;
  * @since 2020-07-20
  */
 @TableName("yuekeju_permission")
-public class YuekejuPermissionEntity implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class YuekejuPermissionEntity extends YuekejuPersionLiableVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,7 +32,7 @@ public class YuekejuPermissionEntity implements Serializable {
      * id
      */
     @TableId(type=IdType.AUTO)
-    private Integer id;
+    private Long id;
     /**
      * 唯一标识
      */
@@ -73,169 +79,12 @@ public class YuekejuPermissionEntity implements Serializable {
     @TableField("permission_icon")
     private String permissionIcon;
     /**
+     * 根id
+     */
+    private Long permissionRootId;
+    /**
      * 权限状态
      */
     @TableField("del_tab_status")
     private BigDecimal delTabStatus;
-    /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private Date createTime;
-    /**
-     * 修改时间
-     */
-    @TableField("update_time")
-    private Date updateTime;
-    /**
-     * 创建人
-     */
-    private String creater;
-    /**
-     * 修改人
-     */
-    private String modified;
-
-    
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getYuekejuCode() {
-        return yuekejuCode;
-    }
-
-    public void setYuekejuCode(String yuekejuCode) {
-        this.yuekejuCode = yuekejuCode;
-    }
-
-    public String getPermissionName() {
-        return permissionName;
-    }
-
-    public void setPermissionName(String permissionName) {
-        this.permissionName = permissionName;
-    }
-
-    public String getPermissionDescription() {
-        return permissionDescription;
-    }
-
-    public void setPermissionDescription(String permissionDescription) {
-        this.permissionDescription = permissionDescription;
-    }
-
-    public String getPermissionUrl() {
-        return permissionUrl;
-    }
-
-    public void setPermissionUrl(String permissionUrl) {
-        this.permissionUrl = permissionUrl;
-    }
-
-    public String getPermissionPerms() {
-        return permissionPerms;
-    }
-
-    public void setPermissionPerms(String permissionPerms) {
-        this.permissionPerms = permissionPerms;
-    }
-
-    public String getPermissionParentId() {
-        return permissionParentId;
-    }
-
-    public void setPermissionParentId(String permissionParentId) {
-        this.permissionParentId = permissionParentId;
-    }
-
-    public BigDecimal getPermissionType() {
-        return permissionType;
-    }
-
-    public void setPermissionType(BigDecimal permissionType) {
-        this.permissionType = permissionType;
-    }
-
-    public BigDecimal getPemissionOrderNum() {
-        return pemissionOrderNum;
-    }
-
-    public void setPemissionOrderNum(BigDecimal pemissionOrderNum) {
-        this.pemissionOrderNum = pemissionOrderNum;
-    }
-
-    public String getPermissionIcon() {
-        return permissionIcon;
-    }
-
-    public void setPermissionIcon(String permissionIcon) {
-        this.permissionIcon = permissionIcon;
-    }
-
-    public BigDecimal getDelTabStatus() {
-        return delTabStatus;
-    }
-
-    public void setDelTabStatus(BigDecimal delTabStatus) {
-        this.delTabStatus = delTabStatus;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getCreater() {
-        return creater;
-    }
-
-    public void setCreater(String creater) {
-        this.creater = creater;
-    }
-
-    public String getModified() {
-        return modified;
-    }
-
-    public void setModified(String modified) {
-        this.modified = modified;
-    }
-
-    @Override
-    public String toString() {
-        return "YuekejuPermission{" +
-        ", id=" + id +
-        ", yuekejuCode=" + yuekejuCode +
-        ", permissionName=" + permissionName +
-        ", permissionDescription=" + permissionDescription +
-        ", permissionUrl=" + permissionUrl +
-        ", permissionPerms=" + permissionPerms +
-        ", permissionParentId=" + permissionParentId +
-        ", permissionType=" + permissionType +
-        ", pemissionOrderNum=" + pemissionOrderNum +
-        ", permissionIcon=" + permissionIcon +
-        ", delTabStatus=" + delTabStatus +
-        ", createTime=" + createTime +
-        ", updateTime=" + updateTime +
-        ", creater=" + creater +
-        ", modified=" + modified +
-        "}";
-    }
 }

@@ -3,12 +3,14 @@ package org.yuekeju.common.entity.system;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.yuekeju.common.entity.user.UserEntity;
 import org.yuekeju.common.vo.YuekejuPersionLiableVO;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
@@ -19,6 +21,7 @@ import java.io.Serializable;
  * @since 2020-07-09
  */
 @TableName("yuekeju_sys_dict")
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class YuekejuSysDictEntity  extends YuekejuPersionLiableVO implements Serializable {
 

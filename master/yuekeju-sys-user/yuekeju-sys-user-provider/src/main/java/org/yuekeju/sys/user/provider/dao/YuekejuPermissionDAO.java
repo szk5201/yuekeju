@@ -23,4 +23,8 @@ public interface YuekejuPermissionDAO extends BaseMapper<YuekejuPermissionEntity
 	 * @return
 	 */
 	List<YuekejuPermissionEntity> findAllPermission(String prantId);
+	
+	
+	
+	
 }

@@ -21,4 +21,20 @@ public interface YuekejuPermissionService extends IService<YuekejuPermissionEnti
 	 * @return
 	 */
 	ResultVO findAllPermission(String prantId);
+	
+	/**
+	 * 根据code删除
+	 * @param id
+	 * @return
+	 */
+	ResultVO deletePermission(String id);
+	/**
+	 * 
+	 * @param yuekejuPermissionEntity
+	 * @return
+	 */
+	ResultVO insertPermission(YuekejuPermissionEntity yuekejuPermissionEntity);
+	
+	
+	
 }

@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * <p>
@@ -19,6 +20,7 @@ import lombok.Data;
  */
 @TableName("yuekeju_role_permission")
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class YuekejuRolePermissionEntity  extends YuekejuPersionLiableVO  implements Serializable {
 
     private static final long serialVersionUID = 1L;

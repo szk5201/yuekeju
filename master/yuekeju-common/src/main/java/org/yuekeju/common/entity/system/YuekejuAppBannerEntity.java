@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.IdType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * <p>
@@ -23,6 +24,7 @@ import lombok.Data;
  * @since 2020-07-09
  */
 @TableName("yuekeju_app_banner")
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class YuekejuAppBannerEntity  extends YuekejuPersionLiableVO implements Serializable {
 
@@ -61,9 +63,11 @@ public class YuekejuAppBannerEntity  extends YuekejuPersionLiableVO implements S
     private String remark;
     /**
      * 删除标记
+     * 逻辑删除注解
+     * 新增的时候自动插入，MetaObjectHandlerConfig配置文件
      */
-    @TableLogic  //逻辑删除注解
-    @TableField(value="del_tab_status",fill = FieldFill.INSERT)  //新增的时候自动插入，MetaObjectHandlerConfig配置文件
+    @TableLogic  
+    @TableField(value="del_tab_status",fill = FieldFill.INSERT)  
     private BigDecimal delTabStatus;
 
 }

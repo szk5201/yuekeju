@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
@@ -21,6 +22,7 @@ import java.io.Serializable;
  * @since 2020-07-09
  */
 @TableName("yuekeju_dept")
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class YuekejuDeptEntity  extends YuekejuPersionLiableVO implements Serializable {
 

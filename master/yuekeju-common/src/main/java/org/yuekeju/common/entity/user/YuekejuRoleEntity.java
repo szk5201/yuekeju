@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * <p>
@@ -21,6 +22,7 @@ import lombok.Data;
  * @since 2020-07-09
  */
 @TableName("yuekeju_role")
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class YuekejuRoleEntity  extends YuekejuPersionLiableVO implements Serializable {
 
@@ -30,7 +32,7 @@ public class YuekejuRoleEntity  extends YuekejuPersionLiableVO implements Serial
      * id
      */
     @TableId(type=IdType.AUTO)
-    private Integer id;
+    private Long  id;
     /**
      * 唯一标识
      */
