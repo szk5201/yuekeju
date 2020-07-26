@@ -3,6 +3,9 @@ package org.yuekeju.common.vo;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.enums.FieldFill;
+
 import lombok.Data;
 /**
  * 公共继承
@@ -11,7 +14,7 @@ import lombok.Data;
  */
 @SuppressWarnings("all")
 @Data
-public class YuekejuPersionLiableVO implements  Serializable{
+public abstract class YuekejuPersionLiableVO implements  Serializable{
 	/**
 	 * 
 	 */
@@ -19,17 +22,21 @@ public class YuekejuPersionLiableVO implements  Serializable{
 	/**
 	 *  创建人
 	 */
+	@TableField(fill = FieldFill.INSERT)
 	private String creater;
 	/**
 	 * 修改人
 	 */
+	@TableField(fill = FieldFill.UPDATE)
 	private String modified;
 	/**
 	 * 创建时间
 	 */
+	@TableField(fill = FieldFill.INSERT)
 	private Date createTime;
 	/**
 	 * 修改时间
 	 */
+	@TableField(fill = FieldFill.UPDATE)
 	private Date updateTime;
 }
