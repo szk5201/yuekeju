@@ -26,8 +26,10 @@
 	<!-- 根据父id查询 -->
 	<select id="findAllPermission" resultType="org.yuekeju.common.entity.user.YuekejuPermissionEntity" parameterType="java.lang.String">
 		SELECT
-		<include refid="findAll" /> 
-	    FROM  yuekeju_permission
+		yuekeju.yuekeju_code,yuekeju.permission_name,yuekeju.permission_url,
+		yuekeju.permission_perms,yuekeju.permission_parent_id,yuekeju.permission_type,
+		yuekeju.pemission_order_num,yuekeju.permission_icon,yuekeju.del_tab_status,(select p.permission_name from yuekeju_permission p where p.yuekeju_code = yuekeju.permission_parent_id) as permissionParentName
+	    FROM  yuekeju_permission yuekeju
 	    where permission_parent_id=#{prantId}
 	    order by pemission_order_num
 	    

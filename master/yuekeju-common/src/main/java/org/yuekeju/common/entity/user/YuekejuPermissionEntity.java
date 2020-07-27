@@ -87,4 +87,9 @@ public class YuekejuPermissionEntity extends YuekejuPersionLiableVO implements S
      */
     @TableField("del_tab_status")
     private BigDecimal delTabStatus;
+    /**
+     * 上级菜单名称
+     */
+    @TableField(exist = false)
+    private String permissionParentName;
 }

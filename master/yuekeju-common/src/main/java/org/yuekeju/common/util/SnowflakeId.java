@@ -1,10 +1,14 @@
 package org.yuekeju.common.util;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 @Component
 public class SnowflakeId {
 
+	
+	
 	// ==============================Fields===========================================
 	/** 开始时间截 (2015-01-01) */
 	private final long twepoch = 1420041600000L;
@@ -37,11 +41,9 @@ public class SnowflakeId {
 	private final long sequenceMask = -1L ^ (-1L << sequenceBits);
 
 	/** 工作机器ID(0~31) */
-	@Value("snowflakeId.workerId")
 	private long workerId;
 
 	/** 数据中心ID(0~31) */
-	@Value("snowflakeId.datacenterId")
 	private long datacenterId;
 
 	/** 毫秒内序列(0~4095) */
@@ -60,6 +62,8 @@ public class SnowflakeId {
 	 *            数据中心ID (0~31)
 	 */
 	public SnowflakeId() {
+		workerId = new Random().nextInt(10);
+		datacenterId = new Random().nextInt(10);
 		if (workerId > maxWorkerId || workerId < 0) {
 			throw new IllegalArgumentException(
 					String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
@@ -173,11 +177,11 @@ public class SnowflakeId {
 	// ==============================Test=============================================
 	/** 测试 */
 	public static void main(String[] args) {
-		SnowflakeId idWorker = new SnowflakeId();
+		/*SnowflakeId idWorker = new SnowflakeId();
 		for (int i = 0; i < 100; i++) {
 			long id = idWorker.nextId();
 			System.out.println(Long.toBinaryString(id));
 			System.out.println(id);
-		}
+		}*/
 	}
 }

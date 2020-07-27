@@ -71,6 +71,10 @@ public class YuekejuPermissionVo extends YuekejuPersionLiableVO implements Seria
      * 权限状态
      */
     private BigDecimal delTabStatus;
+    /**
+     * 上级菜单名称
+     */
+    private String permissionParentName;
     
     private List<?> list;
     

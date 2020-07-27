@@ -45,7 +45,7 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 		try {
 			log.info("进入权限查询列表method ");
 			if(prantId==null){
-				prantId="0";
+				prantId="-1";
 			}
 			List<YuekejuPermissionEntity> findAllPermission = baseMapper.findAllPermission(prantId);
 			if(findAllPermission==null || findAllPermission.isEmpty()){
