@@ -19,8 +19,8 @@ public enum ResultEnum {
 	UPDATETIMEERROR(1005,"改数据已被修改，请刷新后重试！"),
 	FINDNULLERROR(1006,"暂无该数据！"),
 	INSERTREPEATEN(1007,"英文名称不能重复!"),
-	INSERTREPEATCN(1008,"中文名称不能重复!");
-	
+	INSERTREPEATCN(1008,"中文名称不能重复!"),
+	PARAMPEATCN(1009,"参数不能为空!");
 	
 	
 	

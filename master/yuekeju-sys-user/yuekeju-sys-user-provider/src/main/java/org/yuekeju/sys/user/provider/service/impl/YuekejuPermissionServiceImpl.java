@@ -1,8 +1,11 @@
 package org.yuekeju.sys.user.provider.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.velocity.runtime.directive.Foreach;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,17 +64,48 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 		
 	}
 	/**
+	 * 根据父id查询 查询menu和目录
+	 */
+	@Override
+	public ResultVO findAllPermissionMenu(String prantId) {
+		try {
+			log.info("进入权限查询列表method ");
+			if(prantId==null){
+				prantId="-1";
+			}
+			List<YuekejuPermissionEntity> findAllPermission = baseMapper.findAllByMenuPermission(prantId);
+			if(findAllPermission==null || findAllPermission.isEmpty()){
+				return new ResultVO(ResultEnum.FINDNULLERROR.getCode(), CommonConstants.FALSE, ResultEnum.FINDNULLERROR.getMessage(), null);
+			}
+			List<YuekejuPermissionVo> findListPermission = findListPermissionMenu(findAllPermission);
+			return new ResultVO(ResultEnum.SELECTSUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.SELECTSUCCESS.getMessage(), findListPermission);
+		} catch (Exception e) {
+			log.error("权限查询失败"+e.getMessage());
+			e.printStackTrace();
+		}
+		return new ResultVO(ResultEnum.SYSTEMERROR.getCode(), CommonConstants.FALSE, ResultEnum.SYSTEMERROR.getMessage(), null);
+	}
+
+	
+	/**
 	 * 删除
 	 */
 	@Override
 	public ResultVO deletePermission(String id) {
 		try {
 			log.info("进入权限删除method");
-			Integer deleteByCode = baseMapper.delete(new EntityWrapper<YuekejuPermissionEntity>().eq("permissionParentId", id));
 			List<YuekejuPermissionEntity> findAllPermission = baseMapper.findAllPermission(id);
+			Map<String,Object> map =  new HashMap<String, Object>();
+			List<String> list = new ArrayList<String>();
 			if(findAllPermission!=null && !findAllPermission.isEmpty()){
-				Integer delete = baseMapper.delete(new EntityWrapper<YuekejuPermissionEntity>().eq("permissionRootId", id));
+				List<YuekejuPermissionVo> findListPermission = this.findListPermission(findAllPermission);
+				for (YuekejuPermissionVo yuekejuPermissionVo : findListPermission) {
+					list.add(yuekejuPermissionVo.getYuekejuCode());
+				}
+				list.add(id);
 			}
+			map.put("delTabStatus", 1);
+			map.put("yuekejuCode", list);
 			return new ResultVO(ResultEnum.DELETESUCCESS.getCode(), CommonConstants.TRUE, CommonConstants.PERMISSION_NAME+ResultEnum.DELETESUCCESS.getMessage(), null);
 		} catch (Exception e) {
 			log.error("权限删除失败"+e.getMessage());
@@ -84,6 +118,8 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 	public ResultVO insertPermission(YuekejuPermissionEntity yuekejuPermissionEntity) {
 		try {
 			log.info("进入权限新增method");
+			yuekejuPermissionEntity.setModified("1");
+			yuekejuPermissionEntity.setCreater("1");
 			yuekejuPermissionEntity.setYuekejuCode(snowFlakeId.nextIdString());
 			Integer insert = baseMapper.insert(yuekejuPermissionEntity);
 			if(insert==0){
@@ -97,6 +133,23 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 		return new ResultVO(ResultEnum.SYSTEMERROR.getCode(), CommonConstants.FALSE, ResultEnum.SYSTEMERROR.getMessage(), null);
 	}
 	
+	@Override
+	public ResultVO findByidPermission(String yuekejuCode) {
+		try {
+			log.info("根据唯一code查询权限");
+			if(yuekejuCode==null || ("").equals(yuekejuCode)){
+				return new ResultVO(ResultEnum.PARAMPEATCN.getCode(), CommonConstants.FALSE, ResultEnum.PARAMPEATCN.getMessage(), null);
+			}
+			List<YuekejuPermissionEntity> findByYuekejuCode = baseMapper.findByYuekejuCode(yuekejuCode);
+			if(findByYuekejuCode==null || findByYuekejuCode.isEmpty()){
+				return new ResultVO(ResultEnum.FINDNULLERROR.getCode(), CommonConstants.FALSE, ResultEnum.FINDNULLERROR.getMessage(), null);
+			}
+			return new ResultVO(ResultEnum.SELECTSUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.SELECTSUCCESS.getMessage(), findByYuekejuCode);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ResultVO(ResultEnum.SYSTEMERROR.getCode(), CommonConstants.FALSE, ResultEnum.SYSTEMERROR.getMessage(), null);
+	}
 	
 	
 	
@@ -121,6 +174,25 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 		
 	}
 	
+
+	/**
+	 * 递归查询 menu 
+	 * @param findList
+	 * @return
+	 */
+	private List<YuekejuPermissionVo> findListPermissionMenu(List<YuekejuPermissionEntity> findList){
+		List<YuekejuPermissionVo> yuekejuPermissionList= new ArrayList<YuekejuPermissionVo>();
+		DozerBeanMapper mapper = new DozerBeanMapper();
+		for (YuekejuPermissionEntity yuekejuPermissionEntity : findList) {
+			 List<YuekejuPermissionEntity> findAllPermission = baseMapper.findAllByMenuPermission(yuekejuPermissionEntity.getYuekejuCode());
+			 YuekejuPermissionVo mapVo = mapper.map(yuekejuPermissionEntity, YuekejuPermissionVo.class);
+			 mapVo.setList(findListPermission(findAllPermission));
+			 yuekejuPermissionList.add(mapVo);
+		}
+		return yuekejuPermissionList;
+		
+	}
+
 
 	
 	

@@ -21,6 +21,12 @@ public interface YuekejuPermissionService extends IService<YuekejuPermissionEnti
 	 * @return
 	 */
 	ResultVO findAllPermission(String prantId);
+	/**
+	 * 根据父id查询 查询menu和目录
+	 * @param prantId
+	 * @return
+	 */
+	ResultVO findAllPermissionMenu(String prantId);
 	
 	/**
 	 * 根据code删除
@@ -34,7 +40,11 @@ public interface YuekejuPermissionService extends IService<YuekejuPermissionEnti
 	 * @return
 	 */
 	ResultVO insertPermission(YuekejuPermissionEntity yuekejuPermissionEntity);
-	
-	
+	/**
+	 * 根据唯一标识查询某条数据
+	 * @param yuekejuCode 唯一标识
+	 * @return
+	 */
+	ResultVO findByidPermission(String yuekejuCode);
 	
 }
