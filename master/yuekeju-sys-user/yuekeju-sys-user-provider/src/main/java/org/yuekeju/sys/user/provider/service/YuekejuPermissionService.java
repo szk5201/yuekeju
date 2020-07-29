@@ -33,7 +33,7 @@ public interface YuekejuPermissionService extends IService<YuekejuPermissionEnti
 	 * @param id
 	 * @return
 	 */
-	ResultVO deletePermission(String id);
+	ResultVO deletePermission(String[] id);
 	/**
 	 * 
 	 * @param yuekejuPermissionEntity

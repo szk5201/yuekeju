@@ -40,15 +40,15 @@
 		yuekeju.permission_perms,yuekeju.permission_parent_id,yuekeju.permission_type,
 		yuekeju.pemission_order_num,yuekeju.permission_icon,yuekeju.del_tab_status,(select p.permission_name from yuekeju_permission p where p.yuekeju_code = yuekeju.permission_parent_id) as permissionParentName
 	    FROM  yuekeju_permission yuekeju
-	    where permission_parent_id=#{prantId} and permission_type in (0,1) and del_tab_status = 0
-	    order by pemission_order_num
+	    where yuekeju.permission_parent_id=#{prantId} and yuekeju.permission_type in (0,1) and yuekeju.del_tab_status = 0
+	    order by yuekeju.pemission_order_num
 	</select>
 	<select id="findByYuekejuCode" resultType="org.yuekeju.common.entity.user.YuekejuPermissionEntity" parameterType="java.lang.String">
 		SELECT
 		yuekeju.yuekeju_code,yuekeju.permission_name,yuekeju.permission_url,
-		yuekeju.permission_perms,yuekeju.permission_parent_id,yuekeju.permission_type,
+		yuekeju.permission_perms,yuekeju.permission_parent_id,yuekeju.permission_type,yuekeju.permission_description,
 		yuekeju.pemission_order_num,yuekeju.permission_icon,yuekeju.del_tab_status,(select p.permission_name from yuekeju_permission p where p.yuekeju_code = yuekeju.permission_parent_id) as permissionParentName
-		from yuekeju_permission where yuekeju_code=#{yuekejuCode} and del_tab_status = 0
+		from yuekeju_permission yuekeju where yuekeju.yuekeju_code=#{yuekejuCode} and yuekeju.del_tab_status = 0
 	</select>
 	<update id="updatePermissionDelTag" parameterType="java.util.Map">
 		update yuekeju_permission 

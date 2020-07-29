@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.yuekeju.common.auth.AuthSecurityAnnotation;
 import org.yuekeju.common.entity.user.YuekejuPermissionEntity;
@@ -65,9 +66,9 @@ public class YuekejuPermissionController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/deletePermission/{id}")
+	@PostMapping("/deletePermission")
 	@AuthSecurityAnnotation(isAuth=true,perms="yuekejuPermission:deletePermission")
-	public ResultVO deletePermission(@PathVariable("id") String id){
+	public ResultVO deletePermission(@RequestBody String[] id){
 		return yuekejuPermissionService.deletePermission(id);
 		
 	}

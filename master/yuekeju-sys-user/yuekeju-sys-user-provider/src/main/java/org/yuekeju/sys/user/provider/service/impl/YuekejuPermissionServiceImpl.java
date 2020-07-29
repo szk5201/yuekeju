@@ -2,10 +2,11 @@ package org.yuekeju.sys.user.provider.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import org.apache.velocity.runtime.directive.Foreach;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,6 @@ import org.yuekeju.common.vo.user.YuekejuPermissionVo;
 import org.yuekeju.sys.user.provider.dao.YuekejuPermissionDAO;
 import org.yuekeju.sys.user.provider.service.YuekejuPermissionService;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
@@ -91,21 +91,24 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 	 * 删除
 	 */
 	@Override
-	public ResultVO deletePermission(String id) {
+	public ResultVO deletePermission(String[] id) {
 		try {
 			log.info("进入权限删除method");
-			List<YuekejuPermissionEntity> findAllPermission = baseMapper.findAllPermission(id);
+			Set<String> set = new HashSet<String>();
 			Map<String,Object> map =  new HashMap<String, Object>();
-			List<String> list = new ArrayList<String>();
-			if(findAllPermission!=null && !findAllPermission.isEmpty()){
-				List<YuekejuPermissionVo> findListPermission = this.findListPermission(findAllPermission);
-				for (YuekejuPermissionVo yuekejuPermissionVo : findListPermission) {
-					list.add(yuekejuPermissionVo.getYuekejuCode());
+			for (int i = 0; i < id.length; i++) {
+				List<YuekejuPermissionEntity> findAllPermission = baseMapper.findAllPermission(id[i]);
+				if(findAllPermission!=null && !findAllPermission.isEmpty()){
+					List<YuekejuPermissionVo> findListPermission = this.findListPermission(findAllPermission);
+					for (YuekejuPermissionVo yuekejuPermissionVo : findListPermission) {
+						set.add(yuekejuPermissionVo.getYuekejuCode());
+					}
 				}
-				list.add(id);
+				set.add(id[i]);
 			}
 			map.put("delTabStatus", 1);
-			map.put("yuekejuCode", list);
+			map.put("yuekejuCode", set);
+			baseMapper.updatePermissionDelTag(map);
 			return new ResultVO(ResultEnum.DELETESUCCESS.getCode(), CommonConstants.TRUE, CommonConstants.PERMISSION_NAME+ResultEnum.DELETESUCCESS.getMessage(), null);
 		} catch (Exception e) {
 			log.error("权限删除失败"+e.getMessage());
@@ -120,7 +123,7 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 			log.info("进入权限新增method");
 			yuekejuPermissionEntity.setModified("1");
 			yuekejuPermissionEntity.setCreater("1");
-			yuekejuPermissionEntity.setYuekejuCode(snowFlakeId.nextIdString());
+			//yuekejuPermissionEntity.setYuekejuCode(snowFlakeId.nextIdString());
 			Integer insert = baseMapper.insert(yuekejuPermissionEntity);
 			if(insert==0){
 				return new ResultVO(ResultEnum.INSERTERROR.getCode(), CommonConstants.FALSE, CommonConstants.PERMISSION_NAME+ResultEnum.INSERTERROR.getMessage(), null);
@@ -186,7 +189,7 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 		for (YuekejuPermissionEntity yuekejuPermissionEntity : findList) {
 			 List<YuekejuPermissionEntity> findAllPermission = baseMapper.findAllByMenuPermission(yuekejuPermissionEntity.getYuekejuCode());
 			 YuekejuPermissionVo mapVo = mapper.map(yuekejuPermissionEntity, YuekejuPermissionVo.class);
-			 mapVo.setList(findListPermission(findAllPermission));
+			 mapVo.setList(findListPermissionMenu(findAllPermission));
 			 yuekejuPermissionList.add(mapVo);
 		}
 		return yuekejuPermissionList;

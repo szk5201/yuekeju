@@ -3,12 +3,15 @@ package org.yuekeju.sys.user.provider.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.yuekeju.common.constants.CommonConstants;
 import org.yuekeju.common.entity.user.YuekejuRoleEntity;
 import org.yuekeju.common.vo.ResultEnum;
 import org.yuekeju.common.vo.ResultVO;
 import org.yuekeju.sys.user.provider.dao.YuekejuRoleDAO;
+import org.yuekeju.sys.user.provider.dao.YuekejuRolePermissionDAO;
 import org.yuekeju.sys.user.provider.service.YuekejuRoleService;
 
 import com.baomidou.mybatisplus.plugins.Page;
@@ -23,8 +26,10 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
  * @since 2020-07-09
  */
 @Service
+@Transactional
 public class YuekejuRoleServiceImpl extends ServiceImpl<YuekejuRoleDAO, YuekejuRoleEntity> implements YuekejuRoleService {
-	
+	@Autowired
+	private YuekejuRolePermissionDAO  yuekejuRolePermissionDAO;
 	/**
 	 * 查询角色列表
 	 */
@@ -92,8 +97,13 @@ public class YuekejuRoleServiceImpl extends ServiceImpl<YuekejuRoleDAO, YuekejuR
 			//新增赋值
 			yuekejuRoleEntity.setCreater("1");
 			yuekejuRoleEntity.setModified("1");
-			yuekejuRoleEntity.setYuekejuCode(System.currentTimeMillis()+"");
 			Integer insert = baseMapper.insert(yuekejuRoleEntity);
+			if(yuekejuRoleEntity.getRolePermisionList()!=null && !yuekejuRoleEntity.getRolePermisionList().isEmpty()){
+				for (int i = 0; i < yuekejuRoleEntity.getRolePermisionList().size(); i++) {
+					yuekejuRoleEntity.getRolePermisionList().get(i).setRoleId(yuekejuRoleEntity.getYuekejuCode());
+					yuekejuRolePermissionDAO.insert(yuekejuRoleEntity.getRolePermisionList().get(i));
+				}
+			}
 			if(insert>0){
 				return  new ResultVO(ResultEnum.INSERTSUCCESS.getCode(),CommonConstants.TRUE,CommonConstants.ROLE_NAME+ResultEnum.INSERTSUCCESS.getMessage(), null);
 			}
