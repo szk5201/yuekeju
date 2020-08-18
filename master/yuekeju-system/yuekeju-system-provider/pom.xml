@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.yuekeju</groupId>
 		<artifactId>yuekeju-system</artifactId>
-		<version>${yuekeju.version}</version>
+		<version>1.0</version>
 	</parent>
 	<groupId>com.yuekeju</groupId>
 	<artifactId>yuekeju-system-provider</artifactId>
@@ -17,10 +17,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>com.yuekeju</groupId>
-			<artifactId>yuekeju-system-service-api</artifactId>
-			<version>${yuekeju.version}</version>
-		</dependency>
+
 	</dependencies>
 </project>

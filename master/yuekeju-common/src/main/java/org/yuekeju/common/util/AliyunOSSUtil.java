@@ -1,30 +1,21 @@
 package org.yuekeju.common.util;
 
+import com.aliyun.oss.ClientException;
+import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.OSSException;
+import com.aliyun.oss.model.*;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Configuration;
+import org.yuekeju.common.vo.ConstantProperties;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Service;
-import org.yuekeju.common.vo.ConstantProperties;
-
-import com.aliyun.oss.ClientException;
-import com.aliyun.oss.OSSClient;
-import com.aliyun.oss.OSSException;
-import com.aliyun.oss.model.CannedAccessControlList;
-import com.aliyun.oss.model.CreateBucketRequest;
-import com.aliyun.oss.model.ListObjectsRequest;
-import com.aliyun.oss.model.OSSObjectSummary;
-import com.aliyun.oss.model.ObjectListing;
-import com.aliyun.oss.model.PutObjectRequest;
-import com.aliyun.oss.model.PutObjectResult;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @Slf4j
@@ -50,9 +41,8 @@ public class AliyunOSSUtil {
 		String accessKeySecret = constantProperties.getKeysecret();
 		String bucketName = constantProperties.getBucketname();
 		String fileHost = constantProperties.getFilehost();
-		System.out.println(endpoint + "endpoint");
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String dateStr = format.format(new Date());
+		SimpleDateFormat formatData = new SimpleDateFormat("yyyy-MM-dd");
+		String dateStr = formatData.format(new Date());
 		OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
 		try {
 			// 容器不存在，就创建

@@ -1,17 +1,13 @@
 package org.yuekeju.common.entity.user;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
-import org.yuekeju.common.vo.YuekejuPersionLiableVO;
-
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.yuekeju.common.vo.YuekejuPersionLiableVO;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * <p>

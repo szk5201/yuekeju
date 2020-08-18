@@ -1,12 +1,7 @@
 package org.yuekeju.sys.user.provider.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +15,7 @@ import org.yuekeju.common.vo.user.YuekejuPermissionVo;
 import org.yuekeju.sys.user.provider.dao.YuekejuPermissionDAO;
 import org.yuekeju.sys.user.provider.service.YuekejuPermissionService;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-
-import lombok.extern.slf4j.Slf4j;
+import java.util.*;
 
 /**
  * <p>
@@ -34,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @SuppressWarnings("all")
-@Transactional
 @Slf4j
 public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionDAO, YuekejuPermissionEntity> implements YuekejuPermissionService {
 
@@ -91,6 +83,7 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 	 * 删除
 	 */
 	@Override
+	@Transactional
 	public ResultVO deletePermission(String[] id) {
 		try {
 			log.info("进入权限删除method");
@@ -106,7 +99,7 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 				}
 				set.add(id[i]);
 			}
-			map.put("delTabStatus", 1);
+			map.put("delTabStatus", CommonConstants.DEFAULT_DEL_TAG);
 			map.put("yuekejuCode", set);
 			baseMapper.updatePermissionDelTag(map);
 			return new ResultVO(ResultEnum.DELETESUCCESS.getCode(), CommonConstants.TRUE, CommonConstants.PERMISSION_NAME+ResultEnum.DELETESUCCESS.getMessage(), null);
@@ -118,12 +111,13 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 	}
 
 	@Override
+	@Transactional
 	public ResultVO insertPermission(YuekejuPermissionEntity yuekejuPermissionEntity) {
 		try {
 			log.info("进入权限新增method");
 			yuekejuPermissionEntity.setModified("1");
 			yuekejuPermissionEntity.setCreater("1");
-			//yuekejuPermissionEntity.setYuekejuCode(snowFlakeId.nextIdString());
+			yuekejuPermissionEntity.setYuekejuCode(snowFlakeId.nextIdString());
 			Integer insert = baseMapper.insert(yuekejuPermissionEntity);
 			if(insert==0){
 				return new ResultVO(ResultEnum.INSERTERROR.getCode(), CommonConstants.FALSE, CommonConstants.PERMISSION_NAME+ResultEnum.INSERTERROR.getMessage(), null);
@@ -197,10 +191,4 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 	}
 
 
-	
-	
-	
-	
-	
-	
 }

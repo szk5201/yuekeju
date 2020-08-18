@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.yuekeju</groupId>
 		<artifactId>yuekeju-system</artifactId>
-		<version>${yuekeju.version}</version>
+		<version>1.0</version>
 	</parent>
 	<groupId>com.yuekeju</groupId>
 	<artifactId>yuekeju-system-service-api</artifactId>

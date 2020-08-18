@@ -1,35 +1,27 @@
 package org.yuekeju.common.config.druiddatasources;
 
-import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
-
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
+
+import javax.sql.DataSource;
+import java.sql.SQLException;
 
 /**
  * 2020-7-10
  * @author szk
  * 数据连接池
  */
-@Configuration
-@RefreshScope
-@Data
+//@Configuration
+//@RefreshScope
+//@Data
 @Slf4j
-@ConditionalOnProperty(name = "myDatasources.enabled", havingValue = "true")
 public class DruidDatasourcesConfig {
 	@Value("${druid.login.enabled}")
     private boolean druidLoginEnabled;
@@ -118,7 +110,7 @@ public class DruidDatasourcesConfig {
     public DataSource druidDataSource() {
     	log.info("开始配置druidDataSource");
         DruidDataSource datasource = new DruidDataSource();
-        datasource.setUrl(this.dbUrl);
+        datasource.setUrl(dbUrl);
         datasource.setUsername(username);
         datasource.setPassword(password);
         datasource.setDriverClassName(driverClassName);

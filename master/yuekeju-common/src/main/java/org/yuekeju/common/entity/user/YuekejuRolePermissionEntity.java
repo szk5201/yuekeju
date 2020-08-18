@@ -1,14 +1,12 @@
 package org.yuekeju.common.entity.user;
 
-import java.io.Serializable;
-
-import org.yuekeju.common.vo.YuekejuPersionLiableVO;
-
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-
+import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -20,15 +18,15 @@ import lombok.EqualsAndHashCode;
  */
 @TableName("yuekeju_role_permission")
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class YuekejuRolePermissionEntity  extends YuekejuPersionLiableVO  implements Serializable {
+public class YuekejuRolePermissionEntity  implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * id
      */
-    private Integer id;
+    @TableId(type=IdType.AUTO)
+    private Long id;
     /**
      * 唯一标识
      */

@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 public class UserFeignServiceImpl  implements UserFeignService{
 	@Override
 	public Page<UserEntity> findUser() {
-		// TODO Auto-generated method stub
+		//  Auto-generated method stub
 		return null;
 	}
 

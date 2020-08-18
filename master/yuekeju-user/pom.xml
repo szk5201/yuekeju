@@ -4,11 +4,11 @@
   <parent>
     <groupId>com.yuekeju</groupId>
     <artifactId>master</artifactId>
-    <version>1.0.SNAPSHOT</version>
+      <version>1.0</version>
   </parent>
   <artifactId>yuekeju-user</artifactId>
   <packaging>pom</packaging>
-  <version>${yuekeju.version}</version>
+    <!--  <version>${yuekeju.version}</version>-->
   <modules>
     <module>yuekeju-user-service-api</module>
     <module>yuekeju-user-provider</module>
@@ -20,15 +20,15 @@
 			<version>${yuekeju.version}</version>
 		</dependency>
 		    <!-- 引入Druid依赖，阿里巴巴所提供的数据源 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.0.28</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.10</version>
-        </dependency>
+      <!--        <dependency>-->
+      <!--            <groupId>com.alibaba</groupId>-->
+      <!--            <artifactId>druid</artifactId>-->
+      <!--            <version>1.0.28</version>-->
+      <!--        </dependency>-->
+      <!--        <dependency>-->
+      <!--            <groupId>com.alibaba</groupId>-->
+      <!--            <artifactId>druid-spring-boot-starter</artifactId>-->
+      <!--            <version>1.1.10</version>-->
+      <!--        </dependency>-->
   </dependencies>
 </project>

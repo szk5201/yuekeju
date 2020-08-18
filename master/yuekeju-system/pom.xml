@@ -5,9 +5,9 @@
 	<parent>
 		<groupId>com.yuekeju</groupId>
 		<artifactId>master</artifactId>
-		<version>1.0.SNAPSHOT</version>
+		<version>1.0</version>
 	</parent>
-	<version>${yuekeju.version}</version>
+	<!--	<version>${yuekeju.version}</version>-->
 	<artifactId>yuekeju-system</artifactId>
 	<packaging>pom</packaging>
 	<dependencies>

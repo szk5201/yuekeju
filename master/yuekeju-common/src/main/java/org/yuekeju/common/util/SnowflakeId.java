@@ -55,11 +55,7 @@ public class SnowflakeId {
 	// ==============================Constructors=====================================
 	/**
 	 * 构造函数
-	 * 
-	 * @param workerId
-	 *            工作ID (0~31)
-	 * @param datacenterId
-	 *            数据中心ID (0~31)
+	 *
 	 */
 	public SnowflakeId() {
 		workerId = new Random().nextInt(10);

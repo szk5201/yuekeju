@@ -1,12 +1,12 @@
 package org.yuekeju.sys.user.provider.dao;
 
-import java.util.List;
-import java.util.Map;
-
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import org.apache.ibatis.annotations.Mapper;
 import org.yuekeju.common.entity.user.YuekejuRoleEntity;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -23,7 +23,7 @@ public interface YuekejuRoleDAO extends BaseMapper<YuekejuRoleEntity> {
      * @param map
      * @return
      */
-	List<YuekejuRoleEntity>  findAllBySearch(Map<String,Object> map);
+	List<YuekejuRoleEntity> findAllBySearch(Pagination page, Map<String, Object> map);
 	/**
 	 * 根据对象条件查询
 	 * @param yuekejuRoleEntity

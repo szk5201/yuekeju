@@ -3,26 +3,15 @@ server:
 spring:
   application:
     name: yuekeju-system
-  #data:
-  #  elasticsearch:
-  #    cluster-nodes: 192.168.0.108:9300
-  #    cluster-name: my-application
   cloud:
     nacos:
       config:
-        server-addr: 127.0.0.1:8848
+        server-addr: 119.8.108.5:8848
         file-extension: yaml
       discovery:
-        server-addr: 127.0.0.1:8848
-    sentinel:
-      transport:
-        dashboard: 47.101.219.100:8080
+        server-addr: 119.8.108.5:8848
 management:
   endpoints:
     web:
       exposure:
         include: '*'
-
-#ribbon:  
-#  ReadTimeout: 3000
-#  ConnectTimeout: 3000

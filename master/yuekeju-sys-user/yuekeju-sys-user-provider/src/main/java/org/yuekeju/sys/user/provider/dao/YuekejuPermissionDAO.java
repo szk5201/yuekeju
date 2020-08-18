@@ -1,12 +1,11 @@
 package org.yuekeju.sys.user.provider.dao;
 
-import java.util.List;
-import java.util.Map;
-
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.yuekeju.common.entity.user.YuekejuPermissionEntity;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -38,7 +37,7 @@ public interface YuekejuPermissionDAO extends BaseMapper<YuekejuPermissionEntity
 	List<YuekejuPermissionEntity> findByYuekejuCode(String yuekejuCode);
 	/**
 	 * 修改删除状态 变为1 已删除
-	 * @param yuekejuCode
+	 * @param map
 	 * @return
 	 */
 	int updatePermissionDelTag(Map<String, Object> map);

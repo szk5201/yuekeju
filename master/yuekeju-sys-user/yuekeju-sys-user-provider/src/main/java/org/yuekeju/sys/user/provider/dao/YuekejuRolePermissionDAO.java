@@ -1,12 +1,11 @@
 package org.yuekeju.sys.user.provider.dao;
 
-import java.util.List;
-import java.util.Map;
-
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.yuekeju.common.entity.user.YuekejuRolePermissionEntity;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -24,4 +23,5 @@ public interface YuekejuRolePermissionDAO extends BaseMapper<YuekejuRolePermissi
 	 * @return
 	 */
 	List<YuekejuRolePermissionEntity>    findAllPermisssionBySearch(Map<String, Object> param);
+
 }

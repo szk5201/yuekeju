@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @SpringBootApplication
 @ComponentScan("org.yuekeju")
-@EnableFeignClients
+@EnableFeignClients("org.yuekeju.sys.user.provider.controller")
 @EnableDiscoveryClient
 @EnableCaching  /** @author szk 开启缓存*/
 @EnableTransactionManagement /**@author szk 开启事务，保证redis与mysql中数据的一致性*/
@@ -23,6 +23,7 @@ public class SysUserApplication
 {
     public static void main( String[] args )
     {
+        System.setProperty("es.set.netty.runtime.available.processors", "false");
         SpringApplication.run(SysUserApplication.class, args);
     }
 }

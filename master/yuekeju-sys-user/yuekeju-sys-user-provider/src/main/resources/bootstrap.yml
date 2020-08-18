@@ -1,52 +1,14 @@
 server:
-  port: 8085
+  port: 8086
 spring:
   application:
     name: yuekeju-sys-user
-  #data:
-  #  elasticsearch:
-  #    cluster-nodes: 192.168.0.108:9300
-  #    cluster-name: my-application
   cloud:
     nacos:
       #nacos远程配置
       config:
-        server-addr: 127.0.0.1:8848
+        server-addr: 119.8.108.5:8848
         file-extension: yaml
       #nacos注册中心
       discovery:
-        server-addr: 127.0.0.1:8848
-      #sentinel控制框架 
-    sentinel:
-      transport:
-        dashboard: 47.101.219.100:8080
-    alibaba:
-      seata:
-        tx-service-group: my_test_tx_group
-  devtools:
-    restart: 
-      enabled: true
-      additional-paths: src/main/java
-      exclude: src/main/resources
-  zipkin:
-    enabled: true
-    base-url: http://47.101.219.100:9411/
-   # discoveryClientEnabled: false
-  sleuth:
-    sampler:
-      probability: 1.0
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-logging:
-  level:
-    com:
-      alibaba:
-        nacos:
-          client:
-            naming: error
-#ribbon:  
-#  ReadTimeout: 3000
-#  ConnectTimeout: 3000
+        server-addr: 119.8.108.5:8848

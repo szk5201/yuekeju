@@ -1,16 +1,14 @@
 package org.yuekeju.common.vo.user;
 
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.enums.IdType;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.yuekeju.common.vo.YuekejuPersionLiableVO;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
-
-import org.yuekeju.common.vo.YuekejuPersionLiableVO;
-
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.enums.IdType;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * <p>

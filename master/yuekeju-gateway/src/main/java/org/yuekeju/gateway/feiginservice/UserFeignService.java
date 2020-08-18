@@ -1,12 +1,10 @@
 package org.yuekeju.gateway.feiginservice;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.yuekeju.common.entity.user.UserEntity;
 import org.yuekeju.gateway.feiginservice.impl.UserFeignServiceImpl;
-
-import com.baomidou.mybatisplus.plugins.Page;
 
 /**
  * 2020-7-10
@@ -19,7 +17,7 @@ public interface UserFeignService {
 	 * 根据条件全查所有用户
 	 * @return UserEntity
 	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@GetMapping(value = "/list")
 	Page<UserEntity> findUser();
 	
 	

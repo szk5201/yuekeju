@@ -6,6 +6,8 @@ package org.yuekeju.common.constants;
  * 静态公共类
  */
 public class CommonConstants {
+	public static final String VERSION_CONTROLLER = "/v1";
+	public static final String VERSION_CONTROLLER_API = "/v1/api";
 	//请求类型
 	public static final String HTTP_POST = "POST";
 	public static final String HTTP_GET = "GET";
@@ -15,6 +17,7 @@ public class CommonConstants {
 	public static final Integer MD5_LENGTH = 16;
 	//AES
 	public static final Integer AES_EXCEPT = 2;
+	public static final String AES = "AES";
 	//常亮
 	public static final boolean FALSE = false;
 	public static final boolean TRUE = true;
@@ -26,5 +29,10 @@ public class CommonConstants {
 	//默认分页的当前页和显示行数
 	public static final Integer DEFAULT_CURRY_PAGE=1;
 	public static final Integer DEFAULT_SIZE=10;
+	//0 代表正常  1代表删除或禁用
+	public static final Integer DEFAULT_ENABLE = 0;
+	public static final Integer DEFAULT_DEL_TAG = 1;
+	//编码集
+	public static final String UTF8 = "UTF-8";
 	
 }

@@ -20,8 +20,8 @@ public enum ResultEnum {
 	FINDNULLERROR(1006,"暂无该数据！"),
 	INSERTREPEATEN(1007,"英文名称不能重复!"),
 	INSERTREPEATCN(1008,"中文名称不能重复!"),
-	PARAMPEATCN(1009,"参数不能为空!");
-	
+	PARAMPEATCN(1009, "参数不能为空!"),
+	CONNECTFEIGIN(1010, "连接异常！");
 	
 	
 	

@@ -1,9 +1,6 @@
 package org.yuekeju.gateway.filter;
 
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -17,16 +14,14 @@ import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.server.ServerWebExchange;
 import org.yuekeju.common.constants.CommonConstants;
-import org.yuekeju.common.entity.user.UserEntity;
 import org.yuekeju.common.util.RedisUtil;
 import org.yuekeju.common.vo.ResultVO;
 import org.yuekeju.gateway.feiginservice.UserFeignService;
-
-import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.plugins.Page;
-
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 /**
  * 2020-7-10
@@ -42,7 +37,6 @@ public class AuthAndLogFilter implements GlobalFilter, Ordered {
 
 	@Override
 	public int getOrder() {
-		// TODO Auto-generated method stub
 		return -20;
 	}
 
@@ -52,8 +46,6 @@ public class AuthAndLogFilter implements GlobalFilter, Ordered {
 		ServerHttpResponse serverHttpResponse = exchange.getResponse();
 		String method = serverHttpRequest.getMethodValue();
 		HttpHeaders headers = serverHttpRequest.getHeaders();
-		
-		//Page<UserEntity> findUser = userFeignService.findUser();
 		if (CommonConstants.HTTP_POST.equals(method) || CommonConstants.HTTP_PUT.equals(method) || CommonConstants.HTTP_DEL.equals(method)) {
 			Mono<Void> tokenVerfication = postTokenVerfication(serverHttpResponse,redisUtil,headers);
 			if(tokenVerfication!=null ){
@@ -84,7 +76,7 @@ public class AuthAndLogFilter implements GlobalFilter, Ordered {
 
 		} else if (CommonConstants.HTTP_GET.equals(method)) {
 			Map requestQueryParams = serverHttpRequest.getQueryParams();
-			// TODO 得到Get请求的请求参数后，做你想做的事
+			// 得到Get请求的请求参数后，做你想做的事
 			return chain.filter(exchange);
 		} else {
 			return  returnDate(false, -2, null, "请求方式错误！", serverHttpResponse);
@@ -102,10 +94,10 @@ public class AuthAndLogFilter implements GlobalFilter, Ordered {
 			return returnDate(false, -2, null, "请您重新登录！", serverHttpResponse);
 		}
 
-		/*String redisToken = redisUtil.get("username") == null ? null : redisUtil.get("username").toString();
+		String redisToken = redisUtil.get("username") == null ? null : redisUtil.get("username").toString();
 		if (redisToken == null || !(token).equals(redisToken)) {
 			return returnDate(false, -1, null, "请您重新登录！", serverHttpResponse);
-		}*/
+		}
 		return null;
 	}
 	public static Mono<Void> returnDate(Boolean isSuccess,Integer code , String date ,String message, ServerHttpResponse serverHttpResponse){

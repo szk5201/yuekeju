@@ -2,15 +2,9 @@ package org.yuekeju.sys.user.provider.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.yuekeju.common.auth.AuthSecurityAnnotation;
+import org.yuekeju.common.constants.CommonConstants;
 import org.yuekeju.common.entity.user.YuekejuPermissionEntity;
 import org.yuekeju.common.vo.ResultVO;
 import org.yuekeju.sys.user.provider.service.YuekejuPermissionService;
@@ -25,7 +19,7 @@ import org.yuekeju.sys.user.provider.service.YuekejuPermissionService;
  */
 @RestController
 @SuppressWarnings("all")
-@RequestMapping("/yuekejuPermission")
+@RequestMapping(CommonConstants.VERSION_CONTROLLER + "/yuekejuPermission")
 public class YuekejuPermissionController {
 	@Autowired
 	private YuekejuPermissionService yuekejuPermissionService;
@@ -37,7 +31,6 @@ public class YuekejuPermissionController {
 	@AuthSecurityAnnotation(isAuth=true,perms="yuekejuPermission:findAllPermission")
 	public ResultVO findAllPermission(){
 		return yuekejuPermissionService.findAllPermission(null);
-		
 	}
 	/**
 	 * 查询所有权限 menu和目录
@@ -47,7 +40,6 @@ public class YuekejuPermissionController {
 	@AuthSecurityAnnotation(isAuth=true,perms="yuekejuPermission:findByMenuPermission")
 	public ResultVO findByMenuPermission(){
 		return yuekejuPermissionService.findAllPermissionMenu(null);
-		
 	}
 	/**
 	 * 新增权限
@@ -58,7 +50,6 @@ public class YuekejuPermissionController {
 	@AuthSecurityAnnotation(isAuth=true,perms="yuekejuPermission:insertPermission")
 	public ResultVO insertPermission(@RequestBody YuekejuPermissionEntity yuekejuPermissionEntity){
 		return yuekejuPermissionService.insertPermission(yuekejuPermissionEntity);
-		
 	}
 	/**
 	 * 
@@ -70,7 +61,6 @@ public class YuekejuPermissionController {
 	@AuthSecurityAnnotation(isAuth=true,perms="yuekejuPermission:deletePermission")
 	public ResultVO deletePermission(@RequestBody String[] id){
 		return yuekejuPermissionService.deletePermission(id);
-		
 	}
 	/**
 	 * 根据code 查询

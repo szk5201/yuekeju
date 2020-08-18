@@ -2,24 +2,21 @@ package org.yuekeju.system.provider.service.impl;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuekeju.common.constants.CommonConstants;
 import org.yuekeju.common.entity.system.YuekejuAppBannerEntity;
-import org.yuekeju.common.entity.user.UserEntity;
 import org.yuekeju.common.util.RedisUtil;
 import org.yuekeju.common.vo.ResultEnum;
 import org.yuekeju.common.vo.ResultVO;
 import org.yuekeju.system.provider.dao.YuekejuAppBannerDAO;
 import org.yuekeju.system.provider.service.YuekejuAppBannerService;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>

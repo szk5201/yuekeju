@@ -1,19 +1,12 @@
 package org.yuekeju.common.util;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+import org.yuekeju.common.constants.CommonConstants;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.yuekeju.common.constants.CommonConstants;
+import java.security.SecureRandom;
 
 /**
  * 2020-7-10
@@ -21,7 +14,11 @@ import org.yuekeju.common.constants.CommonConstants;
  *AES 加密
  */
 public class AesUtil {
-	   /**
+    private AesUtil() {
+
+    }
+
+    /**
      * 将二进制转换成16进制
      * 
      * @param buf
@@ -60,49 +57,17 @@ public class AesUtil {
     }
 
     /**
-     * AES加密
-     * 
+     * 加密
      * @param content
-     *            需要加密的内容
      * @param password
-     *            加密密码
      * @return
      */
-/*    public static byte[] encryptAES(String content, String password) {
-        try {
-            KeyGenerator kgen = KeyGenerator.getInstance("AES");
-            kgen.init(128, new SecureRandom(password.getBytes()));
-            SecretKey secretKey = kgen.generateKey();
-            byte[] enCodeFormat = secretKey.getEncoded();
-            SecretKeySpec key = new SecretKeySpec(enCodeFormat, "AES");
-            Cipher cipher = Cipher.getInstance("AES");// 创建密码器
-            byte[] byteContent = content.getBytes("utf-8");
-            cipher.init(Cipher.ENCRYPT_MODE, key);// 初始化
-            byte[] result = cipher.doFinal(byteContent);
-            return result; // 加密
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }*/
-
-
     public static byte[] encryptAes(String content, String password) {
         try {
             SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
             random.setSeed(password.getBytes());
             // 创建AES的Key生产者
-            KeyGenerator kgen = KeyGenerator.getInstance("AES");
+            KeyGenerator kgen = KeyGenerator.getInstance(CommonConstants.AES);
            // 利用用户密码作为随机数初始化出    128位的key生产者
             kgen.init(128, random);
             //加密没关系，SecureRandom是生成安全随机数序列，password.getBytes()是种子，只要种子相同，序列就一样，所以解密只要有password就行
@@ -111,26 +76,16 @@ public class AesUtil {
             // 返回基本编码格式的密钥，如果此密钥不支持编码，则返回null
             byte[] enCodeFormat = secretKey.getEncoded();
             // 转换为AES专用密钥
-            SecretKeySpec key = new SecretKeySpec(enCodeFormat, "AES");
+            SecretKeySpec key = new SecretKeySpec(enCodeFormat, CommonConstants.AES);
             // 创建密码器
-            Cipher cipher = Cipher.getInstance("AES");
-            byte[] byteContent = content.getBytes("utf-8");
+            Cipher cipher = Cipher.getInstance(CommonConstants.AES);
+            byte[] byteContent = content.getBytes(CommonConstants.UTF8);
             // 初始化为加密模式的密码器
             cipher.init(Cipher.ENCRYPT_MODE, key);
             // 加密
             byte[] result = cipher.doFinal(byteContent);
             return result;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -147,7 +102,7 @@ public class AesUtil {
      */
     public static byte[] decryptAes(byte[] content, String password) {
         try {
-            KeyGenerator kgen = KeyGenerator.getInstance("AES");
+            KeyGenerator kgen = KeyGenerator.getInstance(CommonConstants.AES);
             //①
             SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
             random.setSeed(password.getBytes());
@@ -157,7 +112,7 @@ public class AesUtil {
             // 转换为DES专用密钥
             SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getEncoded(), password);
              // 创建密码器
-            Cipher cipher = Cipher.getInstance("AES");
+            Cipher cipher = Cipher.getInstance(CommonConstants.AES);
              // 初始化
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             byte[] result = cipher.doFinal(content);

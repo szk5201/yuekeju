@@ -1,11 +1,10 @@
 package org.yuekeju.sys.user.provider.service;
 
-import java.util.Map;
-
+import com.baomidou.mybatisplus.service.IService;
 import org.yuekeju.common.entity.user.YuekejuRoleEntity;
 import org.yuekeju.common.vo.ResultVO;
 
-import com.baomidou.mybatisplus.service.IService;
+import java.util.Map;
 
 /**
  * <p>
@@ -41,6 +40,12 @@ public interface YuekejuRoleService extends IService<YuekejuRoleEntity> {
 	 * @return
 	 */
 	ResultVO findRoleNameByCnAndEn(YuekejuRoleEntity yuekejuRoleEntity);
-	
-	
+
+	/**
+	 * 删除角色
+	 *
+	 * @param ids
+	 * @return
+	 */
+	ResultVO deleteRole(String[] ids);
 }

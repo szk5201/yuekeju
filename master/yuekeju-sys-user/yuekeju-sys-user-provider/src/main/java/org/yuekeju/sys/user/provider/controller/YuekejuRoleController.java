@@ -1,19 +1,15 @@
 package org.yuekeju.sys.user.provider.controller;
 
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.yuekeju.common.auth.AuthSecurityAnnotation;
+import org.yuekeju.common.constants.CommonConstants;
 import org.yuekeju.common.entity.user.YuekejuRoleEntity;
 import org.yuekeju.common.vo.ResultVO;
 import org.yuekeju.sys.user.provider.service.YuekejuRoleService;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -24,7 +20,7 @@ import org.yuekeju.sys.user.provider.service.YuekejuRoleService;
  * @since 2020-07-09
  */
 @RestController
-@RequestMapping("/yuekejuRole")
+@RequestMapping(CommonConstants.VERSION_CONTROLLER + "/yuekejuRole")
 @SuppressWarnings("all")
 public class YuekejuRoleController {
 	@Autowired
@@ -46,11 +42,11 @@ public class YuekejuRoleController {
 	 */
 	@GetMapping("/findAllBySearch")
 	@AuthSecurityAnnotation(isAuth=true,perms="role:findAllBySearch")
-	public ResultVO  findAllBySearch(Map<String,Object> param){
+	public ResultVO findAllBySearch(@RequestParam Map<String, Object> param) {
 		return	yuekejuRoleService.findAllBySearch(param);
 	}
 	/**
-	 * 全查 分页 和条件查询
+	 * 全查不分页分页 和条件查询 例如id查询
 	 * @param param
 	 * @return
 	 */
@@ -69,6 +65,10 @@ public class YuekejuRoleController {
 		
 	}
 
-	
+	@PostMapping("/deleteRoleByCode")
+	@AuthSecurityAnnotation(isAuth = true, perms = "role:findRoleNameByCnAndEn")
+	public ResultVO deleteRoleByCode(@RequestBody String ids[]) {
+		return yuekejuRoleService.deleteRole(ids);
+	}
 }
 
