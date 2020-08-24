@@ -1,14 +1,14 @@
 package org.yuekeju.common.util;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -23,6 +23,9 @@ public class RedisUtil {
 	@Autowired
 	private RedisTemplate redisTemplate;
 
+	public RedisTemplate objectRedisOrder() {
+		return redisTemplate;
+	}
 	/**
 	 * 设置有效时间
 	 *
@@ -48,7 +51,6 @@ public class RedisUtil {
 	 * @return true=设置成功；false=设置失败
 	 */
 	public boolean expire(final String key, final long timeout, final TimeUnit unit) {
-
 		Boolean ret = redisTemplate.expire(key, timeout, unit);
 		return ret != null && ret;
 	}
@@ -89,7 +91,7 @@ public class RedisUtil {
 	 */
 	public void set(final String key, final Object value) {
 
-		redisTemplate.opsForValue().set(key, value, 1, TimeUnit.MINUTES);
+		redisTemplate.opsForValue().set(key, value, 30, TimeUnit.MINUTES);
 	}
 
 	// 存储普通对象操作
@@ -268,4 +270,13 @@ public class RedisUtil {
 		return redisTemplate.opsForList().range(key, start, end);
 	}
 
+	/**
+	 * 查询是否存在key
+	 *
+	 * @param key
+	 * @return
+	 */
+	public boolean hashKey(String key) {
+		return redisTemplate.hasKey(key);
+	}
 }

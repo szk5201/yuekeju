@@ -29,8 +29,8 @@ public class YuekejuPermissionController {
 	 */
 	@GetMapping("/findAllPermission")
 	@AuthSecurityAnnotation(isAuth=true,perms="yuekejuPermission:findAllPermission")
-	public ResultVO findAllPermission(){
-		return yuekejuPermissionService.findAllPermission(null);
+	public ResultVO findAllPermission(@RequestHeader String tokenId) {
+		return yuekejuPermissionService.findAllPermission(null, tokenId);
 	}
 	/**
 	 * 查询所有权限 menu和目录
@@ -38,8 +38,8 @@ public class YuekejuPermissionController {
 	 */
 	@GetMapping("/findByMenuPermission")
 	@AuthSecurityAnnotation(isAuth=true,perms="yuekejuPermission:findByMenuPermission")
-	public ResultVO findByMenuPermission(){
-		return yuekejuPermissionService.findAllPermissionMenu(null);
+	public ResultVO findByMenuPermission(@RequestHeader String tokenId) {
+		return yuekejuPermissionService.findAllPermissionMenu(null, tokenId);
 	}
 	/**
 	 * 新增权限
@@ -48,8 +48,8 @@ public class YuekejuPermissionController {
 	 */
 	@PostMapping("/insertPermission")
 	@AuthSecurityAnnotation(isAuth=true,perms="yuekejuPermission:insertPermission")
-	public ResultVO insertPermission(@RequestBody YuekejuPermissionEntity yuekejuPermissionEntity){
-		return yuekejuPermissionService.insertPermission(yuekejuPermissionEntity);
+	public ResultVO insertPermission(@RequestBody YuekejuPermissionEntity yuekejuPermissionEntity, @RequestHeader String tokenId) {
+		return yuekejuPermissionService.insertPermission(yuekejuPermissionEntity, tokenId);
 	}
 	/**
 	 * 
@@ -59,8 +59,8 @@ public class YuekejuPermissionController {
 	 */
 	@PostMapping("/deletePermission")
 	@AuthSecurityAnnotation(isAuth=true,perms="yuekejuPermission:deletePermission")
-	public ResultVO deletePermission(@RequestBody String[] id){
-		return yuekejuPermissionService.deletePermission(id);
+	public ResultVO deletePermission(@RequestBody String[] id, @RequestHeader String tokenId) {
+		return yuekejuPermissionService.deletePermission(id, tokenId);
 	}
 	/**
 	 * 根据code 查询
@@ -68,8 +68,8 @@ public class YuekejuPermissionController {
 	 * @return
 	 */
 	@GetMapping("/findByCode/{yuekejuCode}")
-	public ResultVO findByCode(@PathVariable("yuekejuCode") String yuekejuCode){
-		return yuekejuPermissionService.findByidPermission(yuekejuCode);
+	public ResultVO findByCode(@PathVariable("yuekejuCode") String yuekejuCode, @RequestHeader String tokenId) {
+		return yuekejuPermissionService.findByidPermission(yuekejuCode, tokenId);
 	}
 	
 	

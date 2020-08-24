@@ -7,6 +7,7 @@ import com.alibaba.druid.support.http.WebStatFilter;
 import com.alibaba.druid.wall.WallConfig;
 import com.alibaba.druid.wall.WallFilter;
 import com.baomidou.mybatisplus.MybatisConfiguration;
+import com.baomidou.mybatisplus.mapper.MetaObjectHandler;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
 import org.apache.ibatis.plugin.Interceptor;
@@ -112,6 +113,11 @@ public class MyBatisPlusConfigDruidd {
         return getDruidDataSource(slaveUrl, slaveUserName, slavePassword);
     }
 
+    @Bean
+    public MetaObjectHandler metaObjectHandler() {
+        //return new META;
+        return new MetaObjectHandlerConfig();
+    }
     private DruidDataSource getDruidDataSource(String url, String userName, String password) throws SQLException {
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setDriverClassName(driver);

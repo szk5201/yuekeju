@@ -32,8 +32,8 @@ public class YuekejuRoleController {
 	 */
 	@PostMapping("/insertRole")
 	@AuthSecurityAnnotation(isAuth=true,perms="role:insert")
-	public ResultVO  insertRole(@RequestBody YuekejuRoleEntity yuekejuRoleEntity){
-		return	yuekejuRoleService.insertRole(yuekejuRoleEntity);
+	public ResultVO insertRole(@RequestBody YuekejuRoleEntity yuekejuRoleEntity, @RequestHeader String tokenId) {
+		return yuekejuRoleService.insertRole(yuekejuRoleEntity, tokenId);
 	}
 	/**
 	 * 全查 分页 和条件查询
@@ -42,8 +42,8 @@ public class YuekejuRoleController {
 	 */
 	@GetMapping("/findAllBySearch")
 	@AuthSecurityAnnotation(isAuth=true,perms="role:findAllBySearch")
-	public ResultVO findAllBySearch(@RequestParam Map<String, Object> param) {
-		return	yuekejuRoleService.findAllBySearch(param);
+	public ResultVO findAllBySearch(@RequestParam Map<String, Object> param, @RequestHeader String tokenId) {
+		return yuekejuRoleService.findAllBySearch(param, tokenId);
 	}
 	/**
 	 * 全查不分页分页 和条件查询 例如id查询
@@ -52,23 +52,23 @@ public class YuekejuRoleController {
 	 */
 	@GetMapping("/findRoleByCode")
 	@AuthSecurityAnnotation(isAuth=true,perms="role:findRoleByCode")
-	public ResultVO  findRoleByCode(Map<String,Object> param){
-		return	yuekejuRoleService.findRoleByCode(param);
+	public ResultVO findRoleByCode(Map<String, Object> param, @RequestHeader String tokenId) {
+		return yuekejuRoleService.findRoleByCode(param, tokenId);
 	}
 	/**
 	 * 验证 中文名称和英文名称
 	 */
 	@GetMapping("/findRoleNameByCnAndEn")
 	@AuthSecurityAnnotation(isAuth=true,perms="role:findRoleNameByCnAndEn")
-	public ResultVO findRoleNameByCnAndEn(YuekejuRoleEntity yuekejuRoleEntity){
-		return yuekejuRoleService.findRoleNameByCnAndEn(yuekejuRoleEntity);
+	public ResultVO findRoleNameByCnAndEn(YuekejuRoleEntity yuekejuRoleEntity, @RequestHeader String tokenId) {
+		return yuekejuRoleService.findRoleNameByCnAndEn(yuekejuRoleEntity, tokenId);
 		
 	}
 
 	@PostMapping("/deleteRoleByCode")
 	@AuthSecurityAnnotation(isAuth = true, perms = "role:findRoleNameByCnAndEn")
-	public ResultVO deleteRoleByCode(@RequestBody String ids[]) {
-		return yuekejuRoleService.deleteRole(ids);
+	public ResultVO deleteRoleByCode(@RequestBody String ids[], @RequestHeader String tokenId) {
+		return yuekejuRoleService.deleteRole(ids, tokenId);
 	}
 }
 

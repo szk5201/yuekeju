@@ -2,13 +2,9 @@ package org.yuekeju.common.entity.user;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
-
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-
-import org.yuekeju.common.vo.YuekejuPersionLiableVO;
 
 /**
  * <p>
@@ -20,8 +16,7 @@ import org.yuekeju.common.vo.YuekejuPersionLiableVO;
  */
 @TableName("yuekeju_role_user")
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class YuekejuRoleUserEntity  extends YuekejuPersionLiableVO implements Serializable {
+public class YuekejuRoleUserEntity  implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

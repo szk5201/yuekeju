@@ -8,6 +8,9 @@ package org.yuekeju.common.constants;
 public class CommonConstants {
 	public static final String VERSION_CONTROLLER = "/v1";
 	public static final String VERSION_CONTROLLER_API = "/v1/api";
+
+	//token 私钥key
+	public static final String TOKEN_PRIVATE_KEY = "ceshi";
 	//请求类型
 	public static final String HTTP_POST = "POST";
 	public static final String HTTP_GET = "GET";
@@ -26,9 +29,10 @@ public class CommonConstants {
 	public static final String DISC_NAME = "词典";
 	public static final String ROLE_NAME="角色";
 	public static final String PERMISSION_NAME="权限";
+	public static final String USER_NAME = "用户";
 	//默认分页的当前页和显示行数
 	public static final Integer DEFAULT_CURRY_PAGE=1;
-	public static final Integer DEFAULT_SIZE=10;
+	public static final Integer DEFAULT_SIZE = 20;
 	//0 代表正常  1代表删除或禁用
 	public static final Integer DEFAULT_ENABLE = 0;
 	public static final Integer DEFAULT_DEL_TAG = 1;

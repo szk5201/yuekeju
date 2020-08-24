@@ -1,18 +1,20 @@
 package org.yuekeju.common.entity.user;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import org.yuekeju.common.vo.YuekejuPersionLiableVO;
-
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-
+import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.yuekeju.common.vo.YuekejuPersionLiableVO;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 2020-7-10
- * 
+ *
  * @author szk 用户表
  */
 @Data()
@@ -20,9 +22,10 @@ import lombok.EqualsAndHashCode;
 @TableName("yuekeju_user")
 public class UserEntity extends YuekejuPersionLiableVO implements Serializable {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
+	@TableId(type = IdType.AUTO)
 	private int id;
 	/**
 	 * 唯一标识
@@ -37,7 +40,7 @@ public class UserEntity extends YuekejuPersionLiableVO implements Serializable {
 	 */
 	private String name;
 	/**
-	 * 
+	 *
 	 */
 	private String userPassword;
 	/**
@@ -80,4 +83,6 @@ public class UserEntity extends YuekejuPersionLiableVO implements Serializable {
 	 * 锁定时间
 	 */
 	private Date userLockTime;
+	@TableField(exist = false)
+	List<YuekejuRoleUserEntity> yuekejuRoleUserEntityList;
 }

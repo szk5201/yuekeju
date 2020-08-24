@@ -36,7 +36,7 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 	 * 根据父id查询
 	 */
 	@Override
-	public ResultVO findAllPermission(String prantId) {
+	public ResultVO findAllPermission(String prantId, String tokenId) {
 		try {
 			log.info("进入权限查询列表method ");
 			if(prantId==null){
@@ -59,7 +59,7 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 	 * 根据父id查询 查询menu和目录
 	 */
 	@Override
-	public ResultVO findAllPermissionMenu(String prantId) {
+	public ResultVO findAllPermissionMenu(String prantId, String tokenId) {
 		try {
 			log.info("进入权限查询列表method ");
 			if(prantId==null){
@@ -84,7 +84,7 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 	 */
 	@Override
 	@Transactional
-	public ResultVO deletePermission(String[] id) {
+	public ResultVO deletePermission(String[] id, String tokenId) {
 		try {
 			log.info("进入权限删除method");
 			Set<String> set = new HashSet<String>();
@@ -112,7 +112,7 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 
 	@Override
 	@Transactional
-	public ResultVO insertPermission(YuekejuPermissionEntity yuekejuPermissionEntity) {
+	public ResultVO insertPermission(YuekejuPermissionEntity yuekejuPermissionEntity, String tokenId) {
 		try {
 			log.info("进入权限新增method");
 			yuekejuPermissionEntity.setModified("1");
@@ -131,7 +131,7 @@ public class YuekejuPermissionServiceImpl extends ServiceImpl<YuekejuPermissionD
 	}
 	
 	@Override
-	public ResultVO findByidPermission(String yuekejuCode) {
+	public ResultVO findByidPermission(String yuekejuCode, String tokenId) {
 		try {
 			log.info("根据唯一code查询权限");
 			if(yuekejuCode==null || ("").equals(yuekejuCode)){

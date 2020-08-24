@@ -1,9 +1,8 @@
 package org.yuekeju.sys.user.provider.service;
 
+import com.baomidou.mybatisplus.service.IService;
 import org.yuekeju.common.entity.user.YuekejuPermissionEntity;
 import org.yuekeju.common.vo.ResultVO;
-
-import com.baomidou.mybatisplus.service.IService;
 
 /**
  * <p>
@@ -18,33 +17,38 @@ public interface YuekejuPermissionService extends IService<YuekejuPermissionEnti
 	/**
 	 * 根据父id查询
 	 * @param prantId
+	 * @param tokenId
 	 * @return
 	 */
-	ResultVO findAllPermission(String prantId);
+	ResultVO findAllPermission(String prantId, String tokenId);
 	/**
 	 * 根据父id查询 查询menu和目录
 	 * @param prantId
+	 * @param tokenId
 	 * @return
 	 */
-	ResultVO findAllPermissionMenu(String prantId);
+	ResultVO findAllPermissionMenu(String prantId, String tokenId);
 	
 	/**
 	 * 根据code删除
 	 * @param id
+	 * @param tokenId
 	 * @return
 	 */
-	ResultVO deletePermission(String[] id);
+	ResultVO deletePermission(String[] id, String tokenId);
 	/**
 	 * 
 	 * @param yuekejuPermissionEntity
+	 * @param tokenId
 	 * @return
 	 */
-	ResultVO insertPermission(YuekejuPermissionEntity yuekejuPermissionEntity);
+	ResultVO insertPermission(YuekejuPermissionEntity yuekejuPermissionEntity, String tokenId);
 	/**
 	 * 根据唯一标识查询某条数据
 	 * @param yuekejuCode 唯一标识
+	 * @param tokenId
 	 * @return
 	 */
-	ResultVO findByidPermission(String yuekejuCode);
+	ResultVO findByidPermission(String yuekejuCode, String tokenId);
 	
 }

@@ -21,7 +21,13 @@ public enum ResultEnum {
 	INSERTREPEATEN(1007,"英文名称不能重复!"),
 	INSERTREPEATCN(1008,"中文名称不能重复!"),
 	PARAMPEATCN(1009, "参数不能为空!"),
-	CONNECTFEIGIN(1010, "连接异常！");
+	LOGINGERROR(1010, "账号或密码错误!"),
+	LOGINGSUCCESS(1011, "登录成功!"),
+	LOGINGTYPEROOR(1012, "登录失败，您无权限登录!"),
+	CONNECTFEIGIN(1013, "连接异常！"),
+	LOGINNAMEREPEATENT(1014, "改手机号已被注册！"),
+	LOGINNANOTTOKEN(1015, "请重新登录！"),
+	LOGINNAILLEGAL(1016, "非法操作！");
 	
 	
 	
