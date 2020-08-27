@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.yuekeju.user.dao.UserDAO">
+<mapper namespace="org.yuekeju.sys.user.provider.dao.UserDAO">
 
 	<sql id="user_all_column_list">
  	id,yuekeju_code,login_name,name,user_password,user_adress,sex,user_number,
@@ -39,7 +39,10 @@
 				yuekeju_code=#{yuekejuCode}
 			</if>
 		</where>
-		order by ${order}
+		<if test="order!=null and order!=''">
+			order by ${order}
+		</if>
+
 	</select>
 	<!-- 查询盐 -->
 	<select id="findSaltByCode" parameterType="java.lang.String" resultType="java.lang.String">

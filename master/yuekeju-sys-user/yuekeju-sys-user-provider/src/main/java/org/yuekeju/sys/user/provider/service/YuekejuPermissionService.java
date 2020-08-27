@@ -20,14 +20,14 @@ public interface YuekejuPermissionService extends IService<YuekejuPermissionEnti
 	 * @param tokenId
 	 * @return
 	 */
-	ResultVO findAllPermission(String prantId, String tokenId);
+	ResultVO findAllPermission(String prantId);
 	/**
 	 * 根据父id查询 查询menu和目录
 	 * @param prantId
 	 * @param tokenId
 	 * @return
 	 */
-	ResultVO findAllPermissionMenu(String prantId, String tokenId);
+	ResultVO findAllPermissionMenu(String prantId);
 	
 	/**
 	 * 根据code删除
@@ -35,20 +35,20 @@ public interface YuekejuPermissionService extends IService<YuekejuPermissionEnti
 	 * @param tokenId
 	 * @return
 	 */
-	ResultVO deletePermission(String[] id, String tokenId);
+	ResultVO deletePermission(String[] id);
 	/**
 	 * 
 	 * @param yuekejuPermissionEntity
 	 * @param tokenId
 	 * @return
 	 */
-	ResultVO insertPermission(YuekejuPermissionEntity yuekejuPermissionEntity, String tokenId);
+	ResultVO insertPermission(YuekejuPermissionEntity yuekejuPermissionEntity);
 	/**
 	 * 根据唯一标识查询某条数据
 	 * @param yuekejuCode 唯一标识
 	 * @param tokenId
 	 * @return
 	 */
-	ResultVO findByidPermission(String yuekejuCode, String tokenId);
+	ResultVO findByidPermission(String yuekejuCode);
 	
 }

@@ -5,7 +5,8 @@ package org.yuekeju.common.vo;
  *
  */
 public enum ResultEnum {
-	
+	STATUS406(406, "请求头格式返回错误"),
+	STATUS405(405, "请求格式不正确"),
 	SYSTEMERROR(500,"系统异常"),
 	INSERTSUCCESS(200,"新增成功"),
 	INSERTERROR(1001,"新增失败"),

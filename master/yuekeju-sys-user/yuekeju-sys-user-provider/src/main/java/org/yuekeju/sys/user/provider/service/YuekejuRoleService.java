@@ -19,38 +19,33 @@ public interface YuekejuRoleService extends IService<YuekejuRoleEntity> {
 	  /**
      * 查询角色  全部查询 或者条件查询
      * @param map
-	   * @param tokenId
 	   * @return
      */
-	  ResultVO findAllBySearch(Map<String, Object> map, String tokenId);
+	  ResultVO findAllBySearch(Map<String, Object> map);
 	/**
 	 * 根据id 查询角色
 	 * @param paramMap
-	 * @param tokenId
 	 * @return
 	 */
-	ResultVO findRoleByCode(Map<String, Object> paramMap, String tokenId);
+	ResultVO findRoleByCode(Map<String, Object> paramMap);
 	/**
 	 * 新增角色
 	 * @param yuekejuRoleEntity
-	 * @param tokenId
 	 * @return
 	 */
-	ResultVO insertRole(YuekejuRoleEntity yuekejuRoleEntity, String tokenId);
+	ResultVO insertRole(YuekejuRoleEntity yuekejuRoleEntity);
 	/**
 	 * 根据中文名称和英文名称查询
 	 * @param yuekejuRoleEntity
-	 * @param tokenId
 	 * @return
 	 */
-	ResultVO findRoleNameByCnAndEn(YuekejuRoleEntity yuekejuRoleEntity, String tokenId);
+	ResultVO findRoleNameByCnAndEn(YuekejuRoleEntity yuekejuRoleEntity);
 
 	/**
 	 * 删除角色
 	 *
 	 * @param ids
-	 * @param tokenId
 	 * @return
 	 */
-	ResultVO deleteRole(String[] ids, String tokenId);
+	ResultVO deleteRole(String[] ids);
 }

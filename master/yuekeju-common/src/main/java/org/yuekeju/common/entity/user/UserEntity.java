@@ -83,6 +83,14 @@ public class UserEntity extends YuekejuPersionLiableVO implements Serializable {
 	 * 锁定时间
 	 */
 	private Date userLockTime;
+	/**
+	 * 角儿list
+	 */
 	@TableField(exist = false)
 	List<YuekejuRoleUserEntity> yuekejuRoleUserEntityList;
+	/**
+	 * 组织机构list
+	 */
+	@TableField(exist = false)
+	List<YuekejuUserDeptEntity> yuekejuUserDeptEntityList;
 }

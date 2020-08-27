@@ -85,7 +85,7 @@ public class IUserServiceImpl extends ServiceImpl<UserDAO, UserEntity> implement
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public ResultVO updateDisableAndLock(UserEntity userEntity, String tokenId) {
+    public ResultVO updateDisableAndLock(UserEntity userEntity) {
         try {
             int updateUser = baseMapper.updateUser(userEntity);
             return new ResultVO(ResultEnum.UPDATESUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.UPDATESUCCESS.getMessage(), null);
@@ -97,7 +97,8 @@ public class IUserServiceImpl extends ServiceImpl<UserDAO, UserEntity> implement
     }
 
     @Override
-    public ResultVO findUserAllBySearch(YuekejuUserVo yuekejuUserVo, String tokenId) {
+    public ResultVO findUserAllBySearch(YuekejuUserVo yuekejuUserVo) {
+
         try {
             if (yuekejuUserVo.getCurrentPage() == 0) {
                 yuekejuUserVo.setCurrentPage(CommonConstants.DEFAULT_CURRY_PAGE);
@@ -119,7 +120,7 @@ public class IUserServiceImpl extends ServiceImpl<UserDAO, UserEntity> implement
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public ResultVO updateUser(UserEntity userEntity, String tokenId) {
+    public ResultVO updateUser(UserEntity userEntity) {
         try {
             int updateUser = baseMapper.updateUser(userEntity);
             if (updateUser > 0) {
@@ -140,7 +141,7 @@ public class IUserServiceImpl extends ServiceImpl<UserDAO, UserEntity> implement
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public ResultVO deleteUser(String[] yuekejuCode, String tokenId) {
+    public ResultVO deleteUser(String[] yuekejuCode) {
         try {
             EntityWrapper entityWrapper = new EntityWrapper();
             Integer delete = baseMapper.delete(entityWrapper.in("yuekeju_code", yuekejuCode));
@@ -155,10 +156,8 @@ public class IUserServiceImpl extends ServiceImpl<UserDAO, UserEntity> implement
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public ResultVO insertUser(UserEntity userEntity, String tokenId) {
+    public ResultVO insertUser(UserEntity userEntity) {
         try {
-            UserEntity entity = JwtUtil.parseJwtAsObject(tokenId);
-            userEntity.setCreater(userEntity.getYuekejuCode());
             userEntity.setCreateTime(new Date());
             userEntity.setSalf(GenerateUuid.randomUuid());
             YuekejuUserVo yuekejuUserVo = new YuekejuUserVo();

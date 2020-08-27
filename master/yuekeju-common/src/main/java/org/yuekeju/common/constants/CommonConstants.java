@@ -6,6 +6,10 @@ package org.yuekeju.common.constants;
  * 静态公共类
  */
 public class CommonConstants {
+
+	public static final int SUCCESS_CODE = 200;
+	public static final int ERROR_CODE = 500;
+
 	public static final String VERSION_CONTROLLER = "/v1";
 	public static final String VERSION_CONTROLLER_API = "/v1/api";
 

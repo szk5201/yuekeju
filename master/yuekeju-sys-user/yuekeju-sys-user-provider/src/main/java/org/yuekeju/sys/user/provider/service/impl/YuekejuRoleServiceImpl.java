@@ -39,7 +39,7 @@ public class YuekejuRoleServiceImpl extends ServiceImpl<YuekejuRoleDAO, YuekejuR
 	 */
 	@SuppressWarnings("all")
 	@Override
-	public ResultVO findAllBySearch(Map<String, Object> paramMap, String tokenId) {
+	public ResultVO findAllBySearch(Map<String, Object> paramMap) {
 		try {
 			if(paramMap.get("curryPage")==null || paramMap.get("curryPage").equals("")){
 				paramMap.put("curryPage", CommonConstants.DEFAULT_CURRY_PAGE);
@@ -65,7 +65,7 @@ public class YuekejuRoleServiceImpl extends ServiceImpl<YuekejuRoleDAO, YuekejuR
 	 */
 	@SuppressWarnings("all")
 	@Override
-	public ResultVO findRoleByCode(Map<String, Object> paramMap, String tokenId) {
+	public ResultVO findRoleByCode(Map<String, Object> paramMap) {
 		try {
 			List<YuekejuRoleEntity> findAllBySearch = baseMapper.findAllBySearch(null, paramMap);
 			if(findAllBySearch!=null && !findAllBySearch.isEmpty()){
@@ -83,7 +83,7 @@ public class YuekejuRoleServiceImpl extends ServiceImpl<YuekejuRoleDAO, YuekejuR
 	@SuppressWarnings("all")
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public ResultVO insertRole(YuekejuRoleEntity yuekejuRoleEntity, String tokenId) {
+	public ResultVO insertRole(YuekejuRoleEntity yuekejuRoleEntity) {
 		try {
 			//查询名字是否重复
 			YuekejuRoleEntity yuekejuRole=null;
@@ -129,7 +129,7 @@ public class YuekejuRoleServiceImpl extends ServiceImpl<YuekejuRoleDAO, YuekejuR
 	 */
 	@SuppressWarnings("all")
 	@Override
-	public ResultVO findRoleNameByCnAndEn(YuekejuRoleEntity yuekejuRoleEntity, String tokenId) {
+	public ResultVO findRoleNameByCnAndEn(YuekejuRoleEntity yuekejuRoleEntity) {
 
 		try {
 			Integer findCountBySearch = 0;
@@ -143,7 +143,7 @@ public class YuekejuRoleServiceImpl extends ServiceImpl<YuekejuRoleDAO, YuekejuR
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public ResultVO deleteRole(String[] ids, String tokenId) {
+	public ResultVO deleteRole(String[] ids) {
 		try {
 			EntityWrapper entityWrapper = new EntityWrapper();
 			Integer deleteRole = baseMapper.delete(entityWrapper.in("yuekeju_code", ids));

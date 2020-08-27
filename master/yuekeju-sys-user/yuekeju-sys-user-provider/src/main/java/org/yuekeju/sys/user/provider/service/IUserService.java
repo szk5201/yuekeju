@@ -25,7 +25,7 @@ public interface IUserService extends IService<UserEntity>{
      * @param yuekejuUserVo
      * @return
      */
-    ResultVO findUserAllBySearch(YuekejuUserVo yuekejuUserVo, String tokenId);
+    ResultVO findUserAllBySearch(YuekejuUserVo yuekejuUserVo);
 
     /**
      * 修改用户信息
@@ -33,7 +33,7 @@ public interface IUserService extends IService<UserEntity>{
      * @param userEntity
      * @return
      */
-    ResultVO updateUser(UserEntity userEntity, String tokenId);
+    ResultVO updateUser(UserEntity userEntity);
 
     /**
      * 删除用户信息 批量
@@ -41,7 +41,7 @@ public interface IUserService extends IService<UserEntity>{
      * @param yuekejuCode
      * @return
      */
-    ResultVO deleteUser(String[] yuekejuCode, String tokenId);
+    ResultVO deleteUser(String[] yuekejuCode);
 
     /**
      * 新增用户信息
@@ -49,7 +49,7 @@ public interface IUserService extends IService<UserEntity>{
      * @param userEntity
      * @return
      */
-    ResultVO insertUser(UserEntity userEntity, String tokenId);
+    ResultVO insertUser(UserEntity userEntity);
 
     /**
      * 修改锁定状态 和禁用状态
@@ -57,6 +57,6 @@ public interface IUserService extends IService<UserEntity>{
      * @param userEntity
      * @return
      */
-    ResultVO updateDisableAndLock(UserEntity userEntity, String tokenId);
+    ResultVO updateDisableAndLock(UserEntity userEntity);
 
 }
