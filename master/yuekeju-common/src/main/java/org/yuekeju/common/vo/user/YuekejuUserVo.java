@@ -45,11 +45,11 @@ public class YuekejuUserVo extends YuekejuPersionLiableVO implements Serializabl
     /**
      * 删除状态
      */
-    private int delTabStatus;
+    private Integer delTabStatus;
     /**
      * 禁用启用状态
      */
-    private int disableStatus;
+    private Integer disableStatus;
     /**
      * 最后一次登陆时间
      */
@@ -57,7 +57,7 @@ public class YuekejuUserVo extends YuekejuPersionLiableVO implements Serializabl
     /**
      * 锁定状态
      */
-    private int userLockStatus;
+    private Integer userLockStatus;
     /**
      * 锁定次数
      */

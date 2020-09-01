@@ -17,7 +17,7 @@ public enum ResultEnum {
 	SELECTSUCCESS(200,"查询成功"),
 	SELECTERROR(1003,"查询失败"),
 	SELECTBYIDERROR(1004,"传入数据有误，无法进行修改！"),
-	UPDATETIMEERROR(1005,"改数据已被修改，请刷新后重试！"),
+	UPDATETIMEERROR(1005, "该数据已被修改，请刷新后重试！"),
 	FINDNULLERROR(1006,"暂无该数据！"),
 	INSERTREPEATEN(1007,"英文名称不能重复!"),
 	INSERTREPEATCN(1008,"中文名称不能重复!"),
@@ -28,7 +28,9 @@ public enum ResultEnum {
 	CONNECTFEIGIN(1013, "连接异常！"),
 	LOGINNAMEREPEATENT(1014, "改手机号已被注册！"),
 	LOGINNANOTTOKEN(1015, "请重新登录！"),
-	LOGINNAILLEGAL(1016, "非法操作！");
+	LOGINNAILLEGAL(1016, "非法操作！"),
+	INSERTDEPTCODE(1017, "组织机构代码不能重复！"),
+	UPDATEDELETE(1018, "该数据已被删除，无法进行修改！");
 	
 	
 	

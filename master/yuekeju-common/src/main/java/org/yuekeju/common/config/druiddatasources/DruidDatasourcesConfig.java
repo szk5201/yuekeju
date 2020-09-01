@@ -16,7 +16,7 @@ import java.sql.SQLException;
 /**
  * 2020-7-10
  * @author szk
- * 数据连接池
+ * 数据连接池  废弃
  */
 //@Configuration
 //@RefreshScope

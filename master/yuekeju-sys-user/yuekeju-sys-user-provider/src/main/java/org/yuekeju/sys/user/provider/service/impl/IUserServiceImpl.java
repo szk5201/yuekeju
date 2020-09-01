@@ -108,6 +108,13 @@ public class IUserServiceImpl extends ServiceImpl<UserDAO, UserEntity> implement
             }
             Page<UserEntity> page = new Page<UserEntity>(yuekejuUserVo.getCurrentPage(), yuekejuUserVo.getPageSize());
             List<UserEntity> userAllBySearch = baseMapper.findUserAllBySearch(page, yuekejuUserVo);
+            for (UserEntity userEntity : userAllBySearch) {
+                if (userEntity.getDisableStatus() == 0) {
+                    userEntity.setUserDisableStatus(false);
+                } else {
+                    userEntity.setUserDisableStatus(true);
+                }
+            }
             return new ResultVO(ResultEnum.SELECTSUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.SELECTSUCCESS.getMessage(), userAllBySearch);
 
         } catch (Exception e) {

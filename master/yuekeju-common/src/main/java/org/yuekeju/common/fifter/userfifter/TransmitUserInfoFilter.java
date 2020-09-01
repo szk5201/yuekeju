@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.yuekeju.common.entity.user.UserEntity;
 import org.yuekeju.common.util.JwtUtil;
@@ -22,6 +23,7 @@ import java.net.URLDecoder;
  */
 @Slf4j
 @Configuration
+@ConditionalOnProperty(name = "myDatasources.enabled", havingValue = "true")
 public class TransmitUserInfoFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -43,7 +45,10 @@ public class TransmitUserInfoFilter implements Filter {
         String userJson = request.getHeader("Authorization");
         if (StringUtils.isNotBlank(userJson)) {
             try {
-                String substring = userJson.substring(7);
+                String substring = userJson;
+                if (userJson.contains("Bearer")) {
+                    substring = userJson.substring(7);
+                }
                 userJson = URLDecoder.decode(substring, "UTF-8");
                 Claims claims = JwtUtil.parseJWT(userJson);
                 UserEntity userInfo = JSON.parseObject(claims.getSubject(), UserEntity.class);

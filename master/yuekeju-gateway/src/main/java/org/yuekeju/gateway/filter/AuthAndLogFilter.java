@@ -21,7 +21,6 @@ import org.yuekeju.common.util.JwtUtil;
 import org.yuekeju.common.util.RedisUtil;
 import org.yuekeju.common.vo.ResultEnum;
 import org.yuekeju.common.vo.ResultVO;
-import org.yuekeju.gateway.feiginservice.UserFeignService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -37,8 +36,6 @@ import java.util.Map;
 public class AuthAndLogFilter implements GlobalFilter, Ordered {
 	@Autowired
 	private RedisUtil redisUtil;
-	@Autowired
-	private UserFeignService userFeignService;
 
 	@Override
 	public int getOrder() {

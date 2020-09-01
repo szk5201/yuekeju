@@ -6,6 +6,7 @@ package org.yuekeju.common.constants;
  * 静态公共类
  */
 public class CommonConstants {
+	public static final String AES_PASSWORD = "YUEKEJUGUANLIXITNGPASSWORD";
 
 	public static final int SUCCESS_CODE = 200;
 	public static final int ERROR_CODE = 500;

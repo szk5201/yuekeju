@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSON;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.yuekeju.common.entity.user.UserEntity;
+import org.yuekeju.common.util.JwtUtil;
 import org.yuekeju.common.util.UserInfoContext;
 
 import java.io.UnsupportedEncodingException;
@@ -18,6 +20,7 @@ import java.net.URLDecoder;
  */
 @Slf4j
 @Configuration
+@ConditionalOnProperty(name = "myDatasources.enabled", havingValue = "true")
 public class TransmitUserInfoFeighClientIntercepter implements RequestInterceptor {
     @Override
     public void apply(RequestTemplate requestTemplate) {
@@ -26,7 +29,8 @@ public class TransmitUserInfoFeighClientIntercepter implements RequestIntercepto
         if (user != null) {
             try {
                 String userJson = JSON.toJSONString(user);
-                requestTemplate.header("KEY_USERINFO_IN_HTTP_HEADER", new String[]{URLDecoder.decode(userJson, "UTF-8")});
+                String jwt = JwtUtil.createJWT(System.currentTimeMillis() + "", userJson, null);
+                requestTemplate.header("Authorization", new String[]{URLDecoder.decode(jwt, "UTF-8")});
             } catch (UnsupportedEncodingException e) {
                 log.error("用户信息设置错误", e);
             } catch (Exception e) {

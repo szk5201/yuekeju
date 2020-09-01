@@ -8,6 +8,7 @@ import org.yuekeju.common.vo.YuekejuPersionLiableVO;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * <p>
@@ -27,7 +28,7 @@ public class YuekejuDeptEntity  extends YuekejuPersionLiableVO implements Serial
     /**
      * id
      */
-    private Integer id;
+    private Long id;
     /**
      * 唯一标识
      */
@@ -74,5 +75,8 @@ public class YuekejuDeptEntity  extends YuekejuPersionLiableVO implements Serial
     @TableField("del_tab_status")
     private BigDecimal delTabStatus;
 
-
+    @TableField(exist = false)
+    private List<YuekejuDeptEntity> childer;
+    @TableField(exist = false)
+    private String parentName;
 }

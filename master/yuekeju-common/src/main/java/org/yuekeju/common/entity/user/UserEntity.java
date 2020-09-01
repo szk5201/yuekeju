@@ -26,7 +26,7 @@ public class UserEntity extends YuekejuPersionLiableVO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@TableId(type = IdType.AUTO)
-	private int id;
+	private Long id;
 	/**
 	 * 唯一标识
 	 */
@@ -62,11 +62,11 @@ public class UserEntity extends YuekejuPersionLiableVO implements Serializable {
 	/**
 	 * 删除状态
 	 */
-	private int delTabStatus;
+	private Integer delTabStatus;
 	/**
 	 * 禁用启用状态
 	 */
-	private int disableStatus;
+	private Integer disableStatus;
 	/**
 	 * 最后一次登陆时间
 	 */
@@ -74,7 +74,7 @@ public class UserEntity extends YuekejuPersionLiableVO implements Serializable {
 	/**
 	 * 锁定状态
 	 */
-	private int userLockStatus;
+	private Integer userLockStatus;
 	/**
 	 * 锁定次数
 	 */
@@ -83,6 +83,8 @@ public class UserEntity extends YuekejuPersionLiableVO implements Serializable {
 	 * 锁定时间
 	 */
 	private Date userLockTime;
+	@TableField(exist = false)
+	private boolean userDisableStatus;
 	/**
 	 * 角儿list
 	 */

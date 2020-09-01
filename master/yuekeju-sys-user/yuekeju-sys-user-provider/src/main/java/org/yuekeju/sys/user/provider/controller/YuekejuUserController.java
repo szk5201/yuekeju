@@ -2,6 +2,7 @@ package org.yuekeju.sys.user.provider.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.yuekeju.common.auth.AuthSecurityAnnotation;
 import org.yuekeju.common.constants.CommonConstants;
 import org.yuekeju.common.entity.user.UserEntity;
 import org.yuekeju.common.vo.ResultVO;
@@ -27,9 +28,10 @@ public class YuekejuUserController {
      * @RequestParam YuekejuUserVo yuekejuUserVo
      */
     @GetMapping("/findUserAllBySearch")
-    public ResultVO findUserAllBySearch() {
+    @AuthSecurityAnnotation(isAuth = true, perms = "user:findUserAllBySearch")
+    public ResultVO findUserAllBySearch(YuekejuUserVo yuekejuUserVo) {
 
-        return iUserService.findUserAllBySearch(new YuekejuUserVo());
+        return iUserService.findUserAllBySearch(yuekejuUserVo);
     }
 
     /**
@@ -39,6 +41,7 @@ public class YuekejuUserController {
      * @return
      */
     @PostMapping("/updateUser")
+    @AuthSecurityAnnotation(isAuth = true, perms = "user:updateUser")
     public ResultVO updateUser(@RequestBody UserEntity userEntity) {
         return iUserService.updateUser(userEntity);
     }
@@ -50,6 +53,7 @@ public class YuekejuUserController {
      * @return
      */
     @PostMapping("/yuekejuCode")
+    @AuthSecurityAnnotation(isAuth = true, perms = "user:yuekejuCode")
     public ResultVO deleteUser(@RequestBody String[] yuekejuCode) {
         return iUserService.deleteUser(yuekejuCode);
     }
@@ -61,6 +65,7 @@ public class YuekejuUserController {
      * @return
      */
     @PostMapping("/insertUser")
+    @AuthSecurityAnnotation(isAuth = true, perms = "user:insertUser")
     public ResultVO insertUser(@RequestBody UserEntity userEntity) {
         return iUserService.insertUser(userEntity);
     }
@@ -72,6 +77,7 @@ public class YuekejuUserController {
      * @return
      */
     @PostMapping("/updateDisableAndLock")
+    @AuthSecurityAnnotation(isAuth = true, perms = "user:updateDisableAndLock")
     public ResultVO updateDisableAndLock(@RequestBody UserEntity userEntity) {
         return iUserService.updateDisableAndLock(userEntity);
     }
@@ -83,6 +89,7 @@ public class YuekejuUserController {
      * @return
      */
     @GetMapping("/findInfoById/{yuekejuCode}")
+    @AuthSecurityAnnotation(isAuth = true, perms = "user:findInfoById")
     public ResultVO findInfoById(@PathVariable String yuekejuCode) {
         YuekejuUserVo yuekejuUserVo = new YuekejuUserVo();
         yuekejuUserVo.setYuekejuCode(yuekejuCode);

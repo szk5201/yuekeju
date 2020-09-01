@@ -9,6 +9,7 @@ import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.util.Locale;
@@ -18,6 +19,7 @@ import java.util.Properties;
 @Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class}),
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class,
                 RowBounds.class, ResultHandler.class})})
+@ConditionalOnProperty(name = "myDatasources.enabled", havingValue = "true")
 public class DynamicDataSourceInterceptor implements Interceptor {
     private static final String REGEX = ".*insert\\u0020.*|.*delete\\u0020.*|.*update\\u0020.*";
 

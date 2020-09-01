@@ -19,5 +19,52 @@
         <result column="creater" property="creater" />
         <result column="modified" property="modified" />
     </resultMap>
+    <sql id="deptColumn">
+        yuekeju_code,dept_en_name,dept_cn_name,dept_parent_id,dept_order_num,dept_disable,dept_code,del_tab_status,create_time,update_time,creater,modified,dept_order_num
+    </sql>
+    <select id="findSearchAll" resultType="org.yuekeju.common.entity.user.YuekejuDeptEntity"
+            parameterType="java.util.Map">
+        select
+        dept.yuekeju_code,dept.dept_en_name,dept.dept_cn_name,dept.dept_parent_id,
+        dept.dept_order_num,dept.dept_disable,dept.dept_code,dept.del_tab_status,
+        dept.create_time,dept.update_time,dept.creater,dept.modified,
+        dept.dept_order_num,parent.dept_cn_name as parentName
+        from yuekeju_dept dept join yuekeju_dept parent on parent.yuekeju_code = dept.dept_parent_id
+        <where>
+            <if test="deptParentId!=null and deptParentId!=''">
+                and dept_parent_id= #{deptParentId} or yuekeju_code=#{deptParentId}
+            </if>
+            <if test="yuekejuCode!=null and yuekejuCode!=''">
+                and yuekeju_code=#{yuekejuCode}
+            </if>
+            <if test="deptEnName!=null and deptEnName!=''">
+                and dept_en_name=#{deptEnName}
+            </if>
+            <if test="deptCnName!=null and deptCnName!=''">
+                and dept_cn_name=#{deptCnName}
+            </if>
+        </where>
+        order by dept_order_num
+    </select>
+    <select id="findSearchTotal" resultType="java.lang.Integer">
+        select
+        count(*)
+        from yuekeju_dept dept join yuekeju_dept parent on parent.yuekeju_code = dept.dept_parent_id
+        <where>
+            <if test="deptParentId!=null and deptParentId!=''">
+                dept_parent_id= #{deptParentId} or yuekeju_code=#{deptParentId}
+            </if>
+            <if test="yuekejuCode!=null and yuekejuCode!=''">
+                yuekeju_code=#{yuekejuCode}
+            </if>
+            <if test="deptEnName!=null and deptEnName!=''">
+                dept_en_name=#{deptEnName}
+            </if>
+            <if test="deptCnName!=null and deptCnName!=''">
+                dept_cn_name=#{deptCnName}
+            </if>
+        </where>
+
+    </select>
 
 </mapper>

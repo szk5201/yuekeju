@@ -9,7 +9,7 @@
 	<sql id="user_info_column_list">
  	id,yuekeju_code,login_name,name,user_adress,sex,user_number,
  	last_login_time,create_time,update_time,creater,modified,user_lock_status,
- 	user_lock_count,user_lock_time
+ 	user_lock_count,user_lock_time,del_tab_status,disable_status
 	 </sql>
 
 
@@ -29,10 +29,10 @@
 			<if test="loginName!=null and loginName!=''">
 				login_name=#{loginName}
 			</if>
-			<if test="disableStatus!=null and disableStatus!=''">
+			<if test="disableStatus!=null and disableStatus>=0">
 				disable_status=#{disableStatus}
 			</if>
-			<if test="userLockStatus!=null and userLockStatus!=''">
+			<if test="userLockStatus!=null and userLockStatus>=0">
 				user_lock_status=#{userLockStatus}
 			</if>
 			<if test="yuekejuCode!=null and yuekejuCode!=''">
@@ -66,19 +66,19 @@
 			<if test="sex!=null and sex!=''">
 				sex=#{sex}
 			</if>
-			<if test="salt!=null and salt!=''">
-				salt=#{salt}
+			<if test="salf!=null and salf!=''">
+				salt=#{salf}
 			</if>
-			<if test="delTabStatus!=null and delTabStatus!=''">
+			<if test="delTabStatus!=null and   delTabStatus>=0">
 				del_tab_status=#{delTabStatus}
 			</if>
-			<if test="disableStatus!=null and disableStatus!=''">
+			<if test="disableStatus!=null and   disableStatus>=0">
 				disable_status=#{disableStatus}
 			</if>
 			<if test="lastLoginTime!=null and lastLoginTime!=''">
 				last_login_time=#{lastLoginTime}
 			</if>
-			<if test="userLockStatus!=null and userLockStatus!=''">
+			<if test="userLockStatus!=null and  userLockStatus>=0">
 				user_lock_status=#{userLockStatus}
 			</if>
 			<if test="userLockCount!=null and userLockCount!=''">

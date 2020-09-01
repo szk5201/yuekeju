@@ -5,6 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.yuekeju.common.constants.CommonConstants;
 import org.yuekeju.common.entity.user.UserEntity;
 
 import javax.crypto.SecretKey;
@@ -54,7 +55,10 @@ public class JwtUtil {
                 .signWith(signatureAlgorithm, secretKey)
                 // 设置过期时间
                 .setExpiration(expDate);
-        return builder.compact();
+        String compact = builder.compact();
+        byte[] bytes = AesUtil.encryptAes(compact, CommonConstants.AES_PASSWORD);
+        String parseByte2HexStr = AesUtil.parseByte2HexStr(bytes);
+        return parseByte2HexStr;
     }
 
     /**
@@ -65,8 +69,11 @@ public class JwtUtil {
      * @throws Exception
      */
     public static Claims parseJWT(String compactJwt) throws Exception {
+        byte[] parseHexStr2Byte = AesUtil.parseHexStr2Byte(compactJwt);
+        byte[] decryptAes = AesUtil.decryptAes(parseHexStr2Byte, CommonConstants.AES_PASSWORD);
+        String decrypt = new String(decryptAes, "utf-8");
         SecretKey secretKey = generalKey();
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(compactJwt).getBody();
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(decrypt).getBody();
     }
 
     /**

@@ -3,6 +3,7 @@ package org.yuekeju.common.handle.rest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
@@ -27,6 +28,7 @@ import java.io.IOException;
  * @date 2020/8/27
  */
 @SuppressWarnings("all")
+@ConditionalOnProperty(name = "myDatasources.enabled", havingValue = "true")
 @RestControllerAdvice
 @Slf4j
 public class RestExceptionHandler {
