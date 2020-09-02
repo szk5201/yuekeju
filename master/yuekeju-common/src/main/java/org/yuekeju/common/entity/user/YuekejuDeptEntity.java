@@ -1,7 +1,6 @@
 package org.yuekeju.common.entity.user;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.yuekeju.common.vo.YuekejuPersionLiableVO;
@@ -28,11 +27,12 @@ public class YuekejuDeptEntity  extends YuekejuPersionLiableVO implements Serial
     /**
      * id
      */
+    @TableId(type = IdType.AUTO)
     private Long id;
     /**
      * 唯一标识
      */
-    @TableField("yuekeju_code")
+    @TableField(value = "yuekeju_code", fill = FieldFill.INSERT)
     private String yuekejuCode;
     /**
      * 组织机构英文名称
@@ -74,7 +74,8 @@ public class YuekejuDeptEntity  extends YuekejuPersionLiableVO implements Serial
      */
     @TableField("del_tab_status")
     private BigDecimal delTabStatus;
-
+    @TableField("is_leaf")
+    private short isLeaf;
     @TableField(exist = false)
     private List<YuekejuDeptEntity> childer;
     @TableField(exist = false)
