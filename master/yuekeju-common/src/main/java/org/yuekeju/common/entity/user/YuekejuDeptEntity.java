@@ -1,6 +1,10 @@
 package org.yuekeju.common.entity.user;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.yuekeju.common.vo.YuekejuPersionLiableVO;
@@ -13,6 +17,7 @@ import java.util.List;
  * <p>
  * 组织机构表
  * </p>
+ *
  *
  * @author suzk123
  * @since 2020-07-09

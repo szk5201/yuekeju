@@ -14,6 +14,7 @@ import org.yuekeju.common.vo.ResultVO;
 import org.yuekeju.sys.user.provider.dao.YuekejuDeptDAO;
 import org.yuekeju.sys.user.provider.service.YuekejuDeptService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,11 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
             if (params.get("pageSize") == null || params.get("pageSize").toString().equals("")) {
                 params.put("pageSize", 20);
             }
+           /* if (params.get("deptParentId") != null && !params.get("deptParentId").toString().equals("")) {
+                if (("-1").equals(params.get("deptParentId").toString())) {
+                    params.put("deptParentId", "");
+                }
+            }*/
             Page<YuekejuDeptEntity> page = new Page<YuekejuDeptEntity>(Integer.parseInt(params.get("currentPage").toString()), Integer.parseInt(params.get("pageSize").toString()));
             Integer searchTotal = baseMapper.findSearchTotal(params);
             List<YuekejuDeptEntity> searchAll = baseMapper.findSearchAll(page, params);
@@ -77,7 +83,10 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
         if (!repate.getIsSuccess()) {
             return repate;
         }
+        Date newDate = new Date();
+        yuekejuDeptEntity.setUpdateTime(newDate);
         if (yuekejuDeptEntity.getYuekejuCode() == null || yuekejuDeptEntity.getYuekejuCode().equals("")) {
+            yuekejuDeptEntity.setCreateTime(newDate);
             Integer insert = baseMapper.insert(yuekejuDeptEntity);
             return new ResultVO(ResultEnum.INSERTSUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.INSERTSUCCESS.getMessage(), null);
         } else {

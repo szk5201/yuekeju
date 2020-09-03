@@ -33,7 +33,7 @@ public class YuekejuDeptController {
      */
     @GetMapping("/findSearchAll")
     @AuthSecurityAnnotation(isAuth = true, perms = "dept:findSearchAll")
-    public ResultVO findSearchAll(Map<String, Object> param) {
+    public ResultVO findSearchAll(@RequestParam Map<String, Object> param) {
         return yuekejuDeptService.findSearchAll(param);
     }
 
@@ -45,7 +45,7 @@ public class YuekejuDeptController {
      */
     @GetMapping("/findSearchAllTree")
     @AuthSecurityAnnotation(isAuth = true, perms = "dept:findSearchAllTree")
-    public ResultVO findSearchAllTree(Map<String, Object> param) {
+    public ResultVO findSearchAllTree(@RequestParam Map<String, Object> param) {
         return yuekejuDeptService.findSearchTreeAll(param);
     }
 
@@ -57,7 +57,7 @@ public class YuekejuDeptController {
      */
     @PostMapping("/insertDept")
     @AuthSecurityAnnotation(isAuth = true, perms = "dept:insertDept")
-    public ResultVO insertDept(YuekejuDeptEntity yuekejuDeptEntity) {
+    public ResultVO insertDept(@RequestBody YuekejuDeptEntity yuekejuDeptEntity) {
         return yuekejuDeptService.insertDept(yuekejuDeptEntity);
     }
 

@@ -1,0 +1,37 @@
+{
+  "groups": [
+    {
+      "name": "oos",
+      "type": "org.yuekeju.common.vo.ConstantProperties",
+      "sourceType": "org.yuekeju.common.vo.ConstantProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "oos.bucketname",
+      "type": "java.lang.String",
+      "sourceType": "org.yuekeju.common.vo.ConstantProperties"
+    },
+    {
+      "name": "oos.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "org.yuekeju.common.vo.ConstantProperties"
+    },
+    {
+      "name": "oos.filehost",
+      "type": "java.lang.String",
+      "sourceType": "org.yuekeju.common.vo.ConstantProperties"
+    },
+    {
+      "name": "oos.keyid",
+      "type": "java.lang.String",
+      "sourceType": "org.yuekeju.common.vo.ConstantProperties"
+    },
+    {
+      "name": "oos.keysecret",
+      "type": "java.lang.String",
+      "sourceType": "org.yuekeju.common.vo.ConstantProperties"
+    }
+  ],
+  "hints": []
+}

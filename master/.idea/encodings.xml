@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yuekeju-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yuekeju-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yuekeju-sys-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yuekeju-sys-user/yuekeju-sys-user-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yuekeju-sys-user/yuekeju-sys-user-service-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yuekeju-system" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yuekeju-system/yuekeju-system-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yuekeju-system/yuekeju-system-service-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yuekeju-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yuekeju-user/yuekeju-user-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yuekeju-user/yuekeju-user-service-api" charset="UTF-8" />
+  </component>
+</project>
