@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuekeju.common.constants.CommonConstants;
 import org.yuekeju.common.entity.user.YuekejuDeptEntity;
-import org.yuekeju.common.handle.custom.ApplicationException;
+import org.yuekeju.common.util.InsertDataUtil;
 import org.yuekeju.common.vo.ResultEnum;
 import org.yuekeju.common.vo.ResultVO;
 import org.yuekeju.sys.user.provider.dao.YuekejuDeptDAO;
 import org.yuekeju.sys.user.provider.service.YuekejuDeptService;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +48,13 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
             Page<YuekejuDeptEntity> page = new Page<YuekejuDeptEntity>(Integer.parseInt(params.get("currentPage").toString()), Integer.parseInt(params.get("pageSize").toString()));
             Integer searchTotal = baseMapper.findSearchTotal(params);
             List<YuekejuDeptEntity> searchAll = baseMapper.findSearchAll(page, params);
+            for (YuekejuDeptEntity deptEntity : searchAll) {
+                if (deptEntity.getDeptDisable() == 0) {
+                    deptEntity.setDeptDisableSwitch(false);
+                } else {
+                    deptEntity.setDeptDisableSwitch(true);
+                }
+            }
             page.setRecords(searchAll);
             page.setTotal(searchTotal);
             return new ResultVO(ResultEnum.SELECTSUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.SELECTSUCCESS.getMessage(), page);
@@ -83,10 +90,8 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
         if (!repate.getIsSuccess()) {
             return repate;
         }
-        Date newDate = new Date();
-        yuekejuDeptEntity.setUpdateTime(newDate);
         if (yuekejuDeptEntity.getYuekejuCode() == null || yuekejuDeptEntity.getYuekejuCode().equals("")) {
-            yuekejuDeptEntity.setCreateTime(newDate);
+            InsertDataUtil.createData(yuekejuDeptEntity);
             Integer insert = baseMapper.insert(yuekejuDeptEntity);
             return new ResultVO(ResultEnum.INSERTSUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.INSERTSUCCESS.getMessage(), null);
         } else {
@@ -95,6 +100,7 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
             List<YuekejuDeptEntity> list = baseMapper.selectList(entityWrapper);
             if (list != null && !list.isEmpty()) {
                 if (list.get(0).getUpdateTime().getTime() == yuekejuDeptEntity.getUpdateTime().getTime()) {
+                    InsertDataUtil.updateData(yuekejuDeptEntity);
                     Integer update = baseMapper.update(yuekejuDeptEntity, entityWrapper);
                     return new ResultVO(ResultEnum.UPDATESUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.UPDATESUCCESS.getMessage(), null);
                 } else {
@@ -111,12 +117,15 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
     }
 
     @Override
-    @Transactional(rollbackFor = ApplicationException.class)
+    @Transactional(rollbackFor = Exception.class)
     public ResultVO deleteDpet(String[] yuekejuCode) {
-        EntityWrapper entityWrapper = new EntityWrapper();
-        entityWrapper.in("yuekeju_code", yuekejuCode);
-        Integer delete = baseMapper.delete(entityWrapper);
-        return new ResultVO(ResultEnum.DELETESUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.DELETESUCCESS.getMessage(), delete);
+        List<String> yuekejuCodeList = new ArrayList<>();
+        for (int i = 0; i < yuekejuCode.length; i++) {
+            yuekejuCodeList.add(yuekejuCode[i]);
+        }
+        recursionDelete(yuekejuCodeList);
+
+        return new ResultVO(ResultEnum.DELETESUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.DELETESUCCESS.getMessage(), null);
     }
 
     @Override
@@ -124,12 +133,18 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
         return isRepate(yuekejuDeptEntity);
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public ResultVO disableFalseAndTrue(YuekejuDeptEntity yuekejuDeptEntity) {
+        baseMapper.updateDept(yuekejuDeptEntity);
+        return new ResultVO(ResultEnum.UPDATESUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.UPDATESUCCESS.getMessage(), null);
+    }
     private ResultVO isRepate(YuekejuDeptEntity yuekejuDeptEntity) {
 
         EntityWrapper entityWrapper = new EntityWrapper();
         entityWrapper.eq("dept_code", yuekejuDeptEntity.getDeptCode());
-        if (yuekejuDeptEntity.getYuekejuCode() != null && "".equals(yuekejuDeptEntity.getYuekejuCode())) {
-            entityWrapper.ne("yuekeju_code", yuekejuDeptEntity.getDeptCode());
+        if (yuekejuDeptEntity.getYuekejuCode() != null && !"".equals(yuekejuDeptEntity.getYuekejuCode())) {
+            entityWrapper.ne("yuekeju_code", yuekejuDeptEntity.getYuekejuCode());
         }
         Integer selectCount = baseMapper.selectCount(entityWrapper);
         if (selectCount > 0) {
@@ -137,22 +152,45 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
         }
         entityWrapper = new EntityWrapper();
         entityWrapper.eq("dept_en_name", yuekejuDeptEntity.getDeptEnName());
-        if (yuekejuDeptEntity.getYuekejuCode() != null && "".equals(yuekejuDeptEntity.getYuekejuCode())) {
-            entityWrapper.ne("yuekeju_code", yuekejuDeptEntity.getDeptCode());
+        if (yuekejuDeptEntity.getYuekejuCode() != null && !"".equals(yuekejuDeptEntity.getYuekejuCode())) {
+            entityWrapper.ne("yuekeju_code", yuekejuDeptEntity.getYuekejuCode());
         }
         selectCount = baseMapper.selectCount(entityWrapper);
         if (selectCount > 0) {
             return new ResultVO(ResultEnum.INSERTREPEATEN.getCode(), CommonConstants.FALSE, ResultEnum.INSERTREPEATEN.getMessage(), null);
         }
         entityWrapper = new EntityWrapper();
-        entityWrapper.eq("dept_cn_name", yuekejuDeptEntity.getDeptEnName());
-        if (yuekejuDeptEntity.getYuekejuCode() != null && "".equals(yuekejuDeptEntity.getYuekejuCode())) {
-            entityWrapper.ne("yuekeju_code", yuekejuDeptEntity.getDeptCode());
+        entityWrapper.eq("dept_cn_name", yuekejuDeptEntity.getDeptCnName());
+        if (yuekejuDeptEntity.getYuekejuCode() != null && !"".equals(yuekejuDeptEntity.getYuekejuCode())) {
+            entityWrapper.ne("yuekeju_code", yuekejuDeptEntity.getYuekejuCode());
         }
         selectCount = baseMapper.selectCount(entityWrapper);
         if (selectCount > 0) {
             return new ResultVO(ResultEnum.INSERTREPEATCN.getCode(), CommonConstants.FALSE, ResultEnum.INSERTREPEATCN.getMessage(), null);
         }
+        entityWrapper = new EntityWrapper();
+        if (yuekejuDeptEntity.getYuekejuCode() == null || "".equals(yuekejuDeptEntity.getYuekejuCode())) {
+            if (yuekejuDeptEntity.getDeptParentId() != null && !"".equals(yuekejuDeptEntity.getDeptParentId())) {
+                entityWrapper.eq("yuekeju_code", yuekejuDeptEntity.getDeptParentId());
+                List<YuekejuDeptEntity> selectList = baseMapper.selectList(entityWrapper);
+                if (selectList != null && !selectList.isEmpty()) {
+                    if (selectList.get(0).getIsLeaf() == 1) {
+                        return new ResultVO(ResultEnum.INSERTLEAF.getCode(), CommonConstants.FALSE, ResultEnum.INSERTLEAF.getMessage(), null);
+                    }
+                } else {
+                    return new ResultVO(ResultEnum.INSERTPARENTNOT.getCode(), CommonConstants.FALSE, ResultEnum.INSERTPARENTNOT.getMessage(), null);
+                }
+            }
+        } else {
+            entityWrapper.eq("dept_parent_id", yuekejuDeptEntity.getYuekejuCode());
+            List<YuekejuDeptEntity> selectList = baseMapper.selectList(entityWrapper);
+            if (selectList != null && !selectList.isEmpty()) {
+                if (selectList.get(0).getIsLeaf() != yuekejuDeptEntity.getIsLeaf()) {
+                    return new ResultVO(ResultEnum.UPDATETLEAF.getCode(), CommonConstants.FALSE, ResultEnum.UPDATETLEAF.getMessage(), null);
+                }
+            }
+        }
+
         return new ResultVO(ResultEnum.SELECTSUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.SELECTSUCCESS.getMessage(), null);
     }
 
@@ -171,6 +209,26 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
                     recursionList(selectList);
                 }
                 dept.setChilder(selectList);
+            }
+        }
+    }
+
+    /**
+     * 递归删除组织机构
+     *
+     * @param yuekejuCode
+     */
+    private void recursionDelete(List<String> yuekejuCode) {
+        if (yuekejuCode != null && !yuekejuCode.isEmpty()) {
+            EntityWrapper entityWrapper = new EntityWrapper();
+            entityWrapper.in("yuekeju_code", yuekejuCode);
+            Integer delete = baseMapper.delete(entityWrapper);
+            entityWrapper = new EntityWrapper();
+            entityWrapper.in("dept_parent_id", yuekejuCode);
+            entityWrapper.setSqlSelect("yuekeju_code");
+            List<String> list = baseMapper.selectList(entityWrapper);
+            if (list != null && !list.isEmpty()) {
+                recursionDelete(list);
             }
         }
     }

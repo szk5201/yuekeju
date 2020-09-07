@@ -1,12 +1,13 @@
 package org.yuekeju.common.vo;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.enums.FieldFill;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.io.Serializable;
+import java.util.Date;
 /**
  * 公共继承
  * @author szk
@@ -33,10 +34,18 @@ public abstract class YuekejuPersionLiableVO implements  Serializable{
 	 * 创建时间
 	 */
 	@TableField(fill = FieldFill.INSERT)
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(
+			pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8"
+	)
 	private Date createTime;
 	/**
 	 * 修改时间
 	 */
 	@TableField(fill = FieldFill.UPDATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(
+			pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8"
+	)
 	private Date updateTime;
 }

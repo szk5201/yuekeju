@@ -30,7 +30,12 @@ public enum ResultEnum {
 	LOGINNANOTTOKEN(1015, "请重新登录！"),
 	LOGINNAILLEGAL(1016, "非法操作！"),
 	INSERTDEPTCODE(1017, "组织机构代码不能重复！"),
-	UPDATEDELETE(1018, "该数据已被删除，无法进行修改！");
+	UPDATEDELETE(1018, "该数据已被删除，无法进行修改！"),
+	INSERTLEAF(1019, "该父级已是底级，无法进行新增!"),
+	UPDATETLEAF(1020, "该下级存在数据，无法进行修改底级!"),
+	UPDATENOTFIND(1021, "该数据不存在无法进行修改！"),
+	INSERTPARENTNOT(1021, "父级节点不存在！"),
+	;
 	
 	
 	

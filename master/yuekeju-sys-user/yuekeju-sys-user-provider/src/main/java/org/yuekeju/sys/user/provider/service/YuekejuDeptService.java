@@ -54,4 +54,12 @@ public interface YuekejuDeptService extends IService<YuekejuDeptEntity> {
      * @return
      */
     ResultVO isYueKejuCodeAndEnAndCn(YuekejuDeptEntity yuekejuDeptEntity);
+
+    /**
+     * 禁用启用
+     *
+     * @param yuekejuDeptEntity
+     * @return
+     */
+    ResultVO disableFalseAndTrue(YuekejuDeptEntity yuekejuDeptEntity);
 }

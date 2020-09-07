@@ -28,7 +28,7 @@
         dept.yuekeju_code,dept.dept_en_name,dept.dept_cn_name,dept.dept_parent_id,
         dept.dept_order_num,dept.dept_disable,dept.dept_code,dept.del_tab_status,
         dept.create_time,dept.update_time,dept.creater,dept.modified,
-        dept.dept_order_num,parent.dept_cn_name as parentName
+        dept.dept_order_num,parent.dept_cn_name as parentName,dept.is_leaf
         from yuekeju_dept dept join yuekeju_dept parent on parent.yuekeju_code = dept.dept_parent_id
         <where>
             <if test="deptParentId!=null and deptParentId!=''">
@@ -38,10 +38,10 @@
                 and dept.yuekeju_code=#{yuekejuCode}
             </if>
             <if test="deptEnName!=null and deptEnName!=''">
-                and dept.dept_en_name=#{deptEnName}
+                and dept.dept_en_name like concat(#{deptEnName},'%')
             </if>
             <if test="deptCnName!=null and deptCnName!=''">
-                and dept.dept_cn_name=#{deptCnName}
+                and dept.dept_cn_name like concat(#{deptCnName},'%')
             </if>
         </where>
         order by dept_order_num
@@ -66,5 +66,8 @@
         </where>
 
     </select>
+    <update id="updateDept" parameterType="org.yuekeju.common.entity.user.YuekejuDeptEntity">
+        update yuekeju_dept SET dept_disable =#{deptDisable} WHERE (yuekeju_code =#{yuekejuCode})
+    </update>
 
 </mapper>

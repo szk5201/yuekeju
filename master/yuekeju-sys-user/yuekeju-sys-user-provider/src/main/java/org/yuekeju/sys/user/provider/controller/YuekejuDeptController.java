@@ -84,5 +84,17 @@ public class YuekejuDeptController {
     public ResultVO isRepeat(YuekejuDeptEntity yuekejuDeptEntity) {
         return yuekejuDeptService.isYueKejuCodeAndEnAndCn(yuekejuDeptEntity);
     }
+
+    /**
+     * 删除
+     *
+     * @param yuekejuDeptEntity
+     * @return
+     */
+    @PostMapping("/disableFalseAndTrue")
+    @AuthSecurityAnnotation(isAuth = true, perms = "dept:disableFalseAndTrue")
+    public ResultVO disableFalseAndTrue(@RequestBody YuekejuDeptEntity yuekejuDeptEntity) {
+        return yuekejuDeptService.disableFalseAndTrue(yuekejuDeptEntity);
+    }
 }
 

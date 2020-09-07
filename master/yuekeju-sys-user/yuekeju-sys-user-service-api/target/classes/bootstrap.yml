@@ -1,0 +1,14 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: yuekeju-sys-user-service
+  cloud:
+    nacos:
+      #nacos远程配置
+      config:
+        server-addr: 119.8.108.5:8848
+        file-extension: yaml
+      #nacos注册中心
+      discovery:
+        server-addr: 119.8.108.5:8848

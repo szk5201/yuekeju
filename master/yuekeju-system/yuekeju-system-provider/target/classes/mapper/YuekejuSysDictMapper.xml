@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yuekeju.system.provider.dao.YuekejuSysDictDAO">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.yuekeju.common.entity.system.YuekejuSysDictEntity">
+        <id column="id" property="id" />
+        <result column="pid" property="pid" />
+        <result column="yuekeju_en_code" property="yuekejuEnCode" />
+        <result column="yuekeju_cn_code" property="yuekejuCnCode" />
+        <result column="yuekeju_date" property="yuekejuDate" />
+        <result column="yuekeju_number" property="yuekejuNumber" />
+        <result column="yuekeju_sys_status" property="yuekejuSysStatus" />
+        <result column="del_tab_status" property="delTabStatus" />
+        <result column="yuekeju_desc" property="yuekejuDesc" />
+        <result column="modified" property="modified" />
+        <result column="creater" property="creater" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+</mapper>

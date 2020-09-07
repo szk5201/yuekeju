@@ -6,10 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="yuekeju-common" />
-        <module name="yuekeju-sys-user-service-api" />
         <module name="yuekeju-user-service-api" />
         <module name="yuekeju-user-provider" />
+        <module name="yuekeju-sys-user-service-api" />
+        <module name="yuekeju-common" />
         <module name="yuekeju-gateway" />
         <module name="yuekeju-system-provider" />
         <module name="yuekeju-system-service-api" />

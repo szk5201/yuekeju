@@ -1,18 +1,13 @@
 package org.yuekeju.common.util;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.MonthDay;
-import java.time.Period;
+import com.google.common.collect.Lists;
+
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 /**
  * 2020-7-10
@@ -375,8 +370,9 @@ public class DateUtil {
 
     /**
      * 检查重复事件，比如生日。TODO This is a example.
-     * 
-     * @param birthDayStr
+     *
+     * @param dayOfMonth
+     * @param month
      * @return
      * @author zero 2019/03/31
      */

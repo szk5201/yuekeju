@@ -35,5 +35,6 @@ public interface YuekejuDeptDAO extends BaseMapper<YuekejuDeptEntity> {
      */
     Integer findSearchTotal(Map<String, Object> params);
 
+    Integer updateDept(YuekejuDeptEntity yuekejuDeptEntity);
 
 }

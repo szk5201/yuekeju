@@ -58,12 +58,12 @@ public class YuekejuDeptEntity  extends YuekejuPersionLiableVO implements Serial
      * 组织机构排序
      */
     @TableField("dept_order_num")
-    private BigDecimal deptOrderNum;
+    private short deptOrderNum;
     /**
      * 组织机构是否启用
      */
     @TableField("dept_disable")
-    private BigDecimal deptDisable;
+    private short deptDisable;
     /**
      * 组织机构描述
      */
@@ -85,4 +85,6 @@ public class YuekejuDeptEntity  extends YuekejuPersionLiableVO implements Serial
     private List<YuekejuDeptEntity> childer;
     @TableField(exist = false)
     private String parentName;
+    @TableField(exist = false)
+    private boolean deptDisableSwitch;
 }
