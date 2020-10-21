@@ -29,7 +29,12 @@ import java.util.Map;
 @Service
 @Slf4j
 public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuDeptEntity> implements YuekejuDeptService {
-
+    /**
+     * 查询所有数据
+     *
+     * @param params
+     * @return
+     */
     @Override
     public ResultVO findSearchAll(Map<String, Object> params) {
         try {
@@ -64,6 +69,12 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
         return new ResultVO(ResultEnum.SYSTEMERROR.getCode(), CommonConstants.FALSE, ResultEnum.SYSTEMERROR.getMessage(), null);
     }
 
+    /**
+     * 查询组织机构树
+     *
+     * @param params
+     * @return
+     */
     @Override
     public ResultVO findSearchTreeAll(Map<String, Object> params) {
         try {
@@ -83,6 +94,12 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
         return new ResultVO(ResultEnum.SYSTEMERROR.getCode(), CommonConstants.FALSE, ResultEnum.SYSTEMERROR.getMessage(), null);
     }
 
+    /**
+     * 新增组织机构和修改组织机构
+     *
+     * @param yuekejuDeptEntity
+     * @return
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResultVO insertDept(YuekejuDeptEntity yuekejuDeptEntity) {
@@ -90,6 +107,9 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
         if (!repate.getIsSuccess()) {
             return repate;
         }
+        /**
+         * 判断是新增还是修改
+         */
         if (yuekejuDeptEntity.getYuekejuCode() == null || yuekejuDeptEntity.getYuekejuCode().equals("")) {
             InsertDataUtil.createData(yuekejuDeptEntity);
             Integer insert = baseMapper.insert(yuekejuDeptEntity);
@@ -139,6 +159,13 @@ public class YuekejuDeptServiceImpl extends ServiceImpl<YuekejuDeptDAO, YuekejuD
         baseMapper.updateDept(yuekejuDeptEntity);
         return new ResultVO(ResultEnum.UPDATESUCCESS.getCode(), CommonConstants.TRUE, ResultEnum.UPDATESUCCESS.getMessage(), null);
     }
+
+    /**
+     * 校验查询
+     *
+     * @param yuekejuDeptEntity
+     * @return
+     */
     private ResultVO isRepate(YuekejuDeptEntity yuekejuDeptEntity) {
 
         EntityWrapper entityWrapper = new EntityWrapper();

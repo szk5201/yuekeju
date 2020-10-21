@@ -66,6 +66,7 @@ public class YuekejuPermissionController {
 	/**
 	 * 根据code 查询
 	 * @param yuekejuCode
+	 * 、
 	 * @return
 	 */
 	@GetMapping("/findByCode/{yuekejuCode}")

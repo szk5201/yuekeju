@@ -1,10 +1,6 @@
 package org.yuekeju.common.config.seata;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import io.seata.spring.annotation.GlobalTransactionScanner;
-@Configuration
+//@Configuration
 public class SeataAutoConfig {
 
     /**

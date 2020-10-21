@@ -1,23 +1,24 @@
 package org.yuekeju.system.provider.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.yuekeju.common.auth.AuthSecurityAnnotation;
+import org.yuekeju.common.constants.CommonConstants;
 import org.yuekeju.common.entity.system.YuekejuAppBannerEntity;
 import org.yuekeju.common.vo.ResultVO;
 import org.yuekeju.system.provider.service.YuekejuAppBannerService;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 /**
  * 轮播图交互层
  * @author szk  2020年7月16日 15:10:52
  *
  */
-@RequestMapping("/banner")
+@RequestMapping(CommonConstants.VERSION_CONTROLLER + "/banner")
 @RestController
 public class YuekejuAppBannerController {
 	@Autowired

@@ -1,19 +1,17 @@
 package org.yuekeju.common.entity.system;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-
-import org.yuekeju.common.vo.YuekejuPersionLiableVO;
-
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.IdType;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.yuekeju.common.vo.YuekejuPersionLiableVO;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * <p>

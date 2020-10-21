@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuekeju.common.constants.CommonConstants;
 import org.yuekeju.common.entity.system.YuekejuAppBannerEntity;
+import org.yuekeju.common.util.InsertDataUtil;
 import org.yuekeju.common.util.RedisUtil;
 import org.yuekeju.common.vo.ResultEnum;
 import org.yuekeju.common.vo.ResultVO;
@@ -43,6 +44,7 @@ public class YuekejuAppBannerServiceImpl extends ServiceImpl<YuekejuAppBannerDAO
 	public ResultVO insertBanner(YuekejuAppBannerEntity yuekeuAppBannerEntity) {
 		try {
 			Integer insert = baseMapper.insert(yuekeuAppBannerEntity);
+			InsertDataUtil.createData(yuekeuAppBannerEntity);
 			if(insert==0){
 				return  new ResultVO(ResultEnum.INSERTERROR.getCode(),CommonConstants.FALSE,CommonConstants.BANNER_NAME+ResultEnum.INSERTERROR.getMessage(), null);
 			}
@@ -70,9 +72,9 @@ public class YuekejuAppBannerServiceImpl extends ServiceImpl<YuekejuAppBannerDAO
 			}
 			//判断时间是否一致
 			if(findBannerBySeach.get(0).getUpdateTime().getTime() != yuekejuAppBannerEntity.getUpdateTime().getTime()){
-				
 				return  new ResultVO(ResultEnum.UPDATETIMEERROR.getCode(),CommonConstants.FALSE,ResultEnum.UPDATETIMEERROR.getMessage(), null);
 			}
+			InsertDataUtil.updateData(yuekejuAppBannerEntity);
 			//修改
 			Integer updateById = baseMapper.updateById(yuekejuAppBannerEntity);
 			if(updateById==0){
