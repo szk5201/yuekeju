@@ -55,13 +55,13 @@
                 (dept.dept_parent_id= #{deptParentId} or dept.yuekeju_code=#{deptParentId})
             </if>
             <if test="yuekejuCode!=null and yuekejuCode!=''">
-                dept.yuekeju_code=#{yuekejuCode}
+                and dept.yuekeju_code=#{yuekejuCode}
             </if>
             <if test="deptEnName!=null and deptEnName!=''">
-                dept.dept_en_name=#{deptEnName}
+                and dept.dept_en_name like concat(#{deptEnName},'%')
             </if>
             <if test="deptCnName!=null and deptCnName!=''">
-                dept.dept_cn_name=#{deptCnName}
+                and dept.dept_cn_name like concat(#{deptCnName},'%')
             </if>
         </where>
 

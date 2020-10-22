@@ -86,7 +86,7 @@ public class YuekejuDeptController {
     }
 
     /**
-     * 删除
+     * 禁用启用
      *
      * @param yuekejuDeptEntity
      * @return
