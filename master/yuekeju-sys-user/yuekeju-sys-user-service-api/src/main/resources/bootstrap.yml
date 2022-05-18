@@ -12,3 +12,10 @@ spring:
       #nacos注册中心
       discovery:
         server-addr: 119.8.108.5:8848
+  zipkin:
+    enabled: true
+    base-url: http://47.101.219.100:9411/
+    discovery-client-enabled: false
+  sleuth:
+    sampler:
+      probability: 1.0

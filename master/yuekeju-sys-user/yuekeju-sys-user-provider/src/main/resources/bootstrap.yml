@@ -7,11 +7,18 @@ spring:
     nacos:
       #nacos远程配置
       config:
-        server-addr: 119.8.108.5:8848
+        server-addr: 127.0.0.1:8848
         #server-addr: 127.0.0.1:8848
         file-extension: yaml
-        #namespace: e8fdea62-7b3b-4b18-bf32-0821f5689209
+        namespace: e8fdea62-7b3b-4b18-bf32-0821f5689209
       #nacos注册中心
       discovery:
-        server-addr: 119.8.108.5:8848
-        #server-addr: 127.0.0.1:8848
+        #server-addr: 119.8.108.5:8848
+        server-addr: 127.0.0.1:8848
+  zipkin:
+    enabled: true
+    base-url: http://47.101.219.100:9411/
+    discovery-client-enabled: false
+  sleuth:
+    sampler:
+      probability: 1.0

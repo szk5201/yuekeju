@@ -29,6 +29,7 @@ public class ResultVO<T> {
 		this.message = message;
 		this.returnDate = returnDate;
 	}
+
 	public ResultVO() {
 		super();
 	}
