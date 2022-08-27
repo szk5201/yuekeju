@@ -27,7 +27,7 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/yuekeju?characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://192.168.99.100:3306/yuekeju?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
     type: com.alibaba.druid.pool.DruidDataSource
   #   数据源其他配置
   druid:
@@ -58,9 +58,34 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
   redis:
     database: 0
-    host: 127.0.0.1
+    host: 192.168.99.100
     port: 6379
     password:
+
+seata:
+  enabled: true
+  enable-auto-data-source-proxy: true
+  tx-service-group: my_test_tx_group
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace:
+      group: SEATA_GROUP
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace:
+      application: seata-server
+  service:
+    vgroup-mapping:
+      my_test_tx_group: default
+    disable-global-transaction: false
+  client:
+    rm:
+      report-success-enable: false
+
 oos:
   endpoint: oss-cn-hangzhou.aliyuncs.com
   keyid: LTAI9aJru3bCIPPY # 填写刚刚生成的AccessKey
