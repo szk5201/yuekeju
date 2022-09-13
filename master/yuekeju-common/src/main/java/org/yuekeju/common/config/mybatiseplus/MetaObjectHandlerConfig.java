@@ -16,11 +16,16 @@ public class MetaObjectHandlerConfig extends MetaObjectHandler{
 		System.out.println("进入=  =  =  =  = = = == = == == == ");
 		// 获取到需要被填充的字段值
         Object yuekejuCode = getFieldValByName("yuekejuCode", metaObject);
-        Object createTime = getFieldValByName("createTime", metaObject);
+		Object id = getFieldValByName("id", metaObject);
+
+		Object createTime = getFieldValByName("createTime", metaObject);
         Object updateTime = getFieldValByName("updateTime", metaObject);
-        if(yuekejuCode == null){
-            setFieldValByName("yuekejuCode",snowFlakeId.nextIdString(),metaObject);
+        if(id == null){
+            setFieldValByName("id",snowFlakeId.nextIdString(),metaObject);
         }
+		if(yuekejuCode == null){
+			setFieldValByName("yuekejuCode",snowFlakeId.nextIdString(),metaObject);
+		}
         if(createTime==null){
         	setFieldValByName("createTime", new Date(),metaObject);
         }

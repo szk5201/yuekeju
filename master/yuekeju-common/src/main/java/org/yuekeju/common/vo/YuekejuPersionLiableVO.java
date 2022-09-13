@@ -2,6 +2,7 @@ package org.yuekeju.common.vo;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.FieldStrategy;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,7 +34,8 @@ public abstract class YuekejuPersionLiableVO implements  Serializable{
 	/**
 	 * 创建时间
 	 */
-	@TableField(fill = FieldFill.INSERT)
+	//@TableField(fill = FieldFill.INSERT)
+	@TableField(value="create_time")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(
 			pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8"

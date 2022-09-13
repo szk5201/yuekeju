@@ -106,4 +106,27 @@ logging:
       alibaba:
         nacos:
           client:
-            naming: error
+            naming: debug
+mybatis-plus:
+  #MyBatis Mapper 所对应的 XML 文件位置，如果您在 Mapper 中有自定义方法（XML 中有自定义实现），需要进行该配置，告诉 Mapper 所对应的 XML 文件位置。
+  mapper-locations: classpath*:mapper/*.xml
+  #单独的 MyBatis 配置，请将其路径配置到 configLocation 中  注意 configuration与config-location不能一起用
+  #config-location: classpath*:mybatis-config.xml
+  # 实体对象的扫描包,MyBaits 别名包扫描路径，通过该属性可以给包中的类注册别名
+ # type-aliases-package: org.yuekeju.*
+  #枚举对象的扫描包
+  #type-enums-package: com.song.druid.test.domain.enums
+  configuration:
+    # 禁用缓存
+    cache-enabled: false
+    #开启映射时驼峰命名
+    map-underscore-to-camel-case: true
+    #开启控制台 SQL 日志打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    auto-mapping-behavior: full
+  global-config:
+    db-config:
+      #全局默认主键类型，设置后，即可省略实体对象中的@TableId(type = IdType.AUTO)配置
+      id-type: auto
+      #表名前缀，全局配置后可省略 @TableName()配置。默认值：null
+      table-prefix:
