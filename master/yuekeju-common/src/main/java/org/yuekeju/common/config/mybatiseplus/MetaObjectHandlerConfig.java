@@ -21,7 +21,7 @@ public class MetaObjectHandlerConfig extends MetaObjectHandler{
 		Object createTime = getFieldValByName("createTime", metaObject);
         Object updateTime = getFieldValByName("updateTime", metaObject);
         if(id == null){
-            setFieldValByName("id",snowFlakeId.nextIdString(),metaObject);
+         //   setFieldValByName("id",snowFlakeId.nextIdString(),metaObject);
         }
 		if(yuekejuCode == null){
 			setFieldValByName("yuekejuCode",snowFlakeId.nextIdString(),metaObject);

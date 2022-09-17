@@ -7,12 +7,16 @@ import com.alibaba.druid.support.http.WebStatFilter;
 import com.alibaba.druid.wall.WallConfig;
 import com.alibaba.druid.wall.WallFilter;
 import com.baomidou.mybatisplus.MybatisConfiguration;
+import com.baomidou.mybatisplus.entity.GlobalConfiguration;
+import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.mapper.MetaObjectHandler;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
+import com.baomidou.mybatisplus.toolkit.GlobalConfigUtils;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.JdbcType;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -35,7 +39,7 @@ import java.util.Map;
 @EnableTransactionManagement
 @ConditionalOnProperty(name = "myDatasources.enabled", havingValue = "true")
 @Configuration
-//@MapperScan(basePackages = "org.yuekeju.**.entity.**.*Entity")
+@MapperScan(basePackages = "com.yuekeju")
 public class MyBatisPlusConfigDruidd {
 
 
@@ -153,6 +157,7 @@ public class MyBatisPlusConfigDruidd {
 
         DynamicDataSource dataSource = new DynamicDataSource();
         dataSource.setTargetDataSources(targetDataSources);
+
         return dataSource;
     }
 
@@ -182,6 +187,8 @@ public class MyBatisPlusConfigDruidd {
     public SqlSessionFactory testSqlSessionFactory() throws Exception {
         //配置mybatis,对应mybatis-config.xml
         MybatisSqlSessionFactoryBean sqlSessionFactory = new MybatisSqlSessionFactoryBean();
+        GlobalConfiguration globalConfig = GlobalConfigUtils.defaults();
+        globalConfig.setMetaObjectHandler(metaObjectHandler());
         //懒加载
         LazyConnectionDataSourceProxy p = new LazyConnectionDataSourceProxy();
         p.setTargetDataSource(dynamicDataSource(master(), slave()));
@@ -195,6 +202,7 @@ public class MyBatisPlusConfigDruidd {
         configuration.setUseGeneratedKeys(true);
         configuration.setCacheEnabled(false);
         sqlSessionFactory.setConfiguration(configuration);
+        sqlSessionFactory.setGlobalConfig(globalConfig);
         //加入上面的两个拦截器
         Interceptor interceptor[] = {paginationInterceptor(), dynamicDataSourceInterceptor()};
         sqlSessionFactory.setPlugins(interceptor);
